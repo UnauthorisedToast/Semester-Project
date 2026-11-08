@@ -2,18 +2,27 @@
 #include <iostream>
 #include <cmath>
 #include <time.h>
-#include <random>
+#include <string>
+#include "class.hpp"
 using namespace std;
+
+
 
 int main () {
     SetTargetFPS(60);
     InitWindow(1600, 800, "Shuraim Homeless");
     InitAudioDevice();
     //default coords
-    int xcoord = 800;
-    int ycoord = 400;
+    int shuraimxcoord = 800;
+    int shuraimycoord = 400;
     int speed = 5;
-    
+
+    interactable obj;
+    obj.id = 1;
+    obj.xcoord = 800;
+    obj.ycoord = 400;
+    obj.path = "sprites/paperonfloor.png";
+
     //asset list
     //visual
     Texture2D shuraim = LoadTexture("sprites/sh.png");
@@ -52,22 +61,29 @@ int main () {
         //according to tutorial event handling goes first
         //movement
         if (IsKeyDown(KEY_D)) {
-            xcoord = xcoord + speed;
+            shuraimxcoord = shuraimxcoord + speed;
         }
         if (IsKeyDown(KEY_A)) {
-            xcoord = xcoord - speed;
+            shuraimxcoord = shuraimxcoord - speed;
         }
         if (IsKeyDown(KEY_W)) {
-            ycoord = ycoord - speed;
+            shuraimycoord = shuraimycoord - speed;
         }
         if (IsKeyDown(KEY_S)) {
-            ycoord = ycoord + speed;
+            shuraimycoord = shuraimycoord + speed;
+        }
+        if (IsKeyDown(KEY_I) && (obj.inRange(shuraimxcoord, shuraimycoord, 100))) {
+            DrawText("INTERACT", 0, 0, 20, RED);
         }
         // then update of positions
         // DRAWING?!?!?!?!
         BeginDrawing();
-        ClearBackground(GRAY);
-        DrawTexture(shuraim, xcoord, ycoord, WHITE);
+        ClearBackground(WHITE);
+        if (obj.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            DrawText("Press E to Interact", 0, 0, 25, RED);
+        }
+        obj.draw();
+        DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
     }

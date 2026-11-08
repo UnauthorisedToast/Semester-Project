@@ -1,0 +1,16 @@
+#pragma once
+#include <raylib.h>
+
+
+class interactable {
+    public:
+        int id;
+        int xcoord;
+        int ycoord;
+        const char* path;
+        //location of texture in file not location of texture on window
+        
+
+        bool inRange (int shuraimx, int shuraimy, int range); 
+        void draw();
+};
