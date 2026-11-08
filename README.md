@@ -4,8 +4,7 @@ The build.bash file is to simply make the game compatible with linux. Windows us
 
 
 For Linux Users:
-
-Run the commands as shown:-
+Run the commands as shown in the directory of the game folders:-
 bash build.bash
 ./a.out
 
