@@ -5,27 +5,46 @@
 #include <random>
 using namespace std;
 
-//declaring assets idk dude
-
 int main () {
     SetTargetFPS(60);
     InitWindow(1600, 800, "Shuraim Homeless");
+    InitAudioDevice();
     //default coords
     int xcoord = 800;
     int ycoord = 400;
     int speed = 5;
     
-    //asset use also idk dude
-    Texture2D shuraim = LoadTexture("resources/sh.png");
+    //asset list
+    //visual
+    Texture2D shuraim = LoadTexture("sprites/sh.png");
+    Texture2D controls;
+    Texture2D wasd;
+    Texture2D border;
+    //audio/music
+    Music menumusic = LoadMusicStream("music/buckshotroulleteost.mp3");
+    PlayMusicStream(menumusic);
 
     //GUI loop
     while (!WindowShouldClose()) {
+        UpdateMusicStream(menumusic);
         BeginDrawing();
         ClearBackground(RED);
         if (IsKeyPressed(KEY_ENTER)) {
             break;
         }
         EndDrawing();
+        if (IsKeyPressed(KEY_ONE)) {
+            //Controls
+        }
+        if (IsKeyPressed(KEY_M)) {
+            if (IsMusicStreamPlaying(menumusic)) {
+                PauseMusicStream(menumusic);
+            }
+            else {
+                ResumeMusicStream(menumusic);
+            }
+        }
+        
     }
 
     //game loop
