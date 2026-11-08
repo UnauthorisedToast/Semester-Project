@@ -5,6 +5,9 @@
 #include <random>
 using namespace std;
 
+//declaring assets idk dude
+Texture2D shuraim;
+
 int main () {
     SetTargetFPS(60);
     InitWindow(1600, 800, "Shuraim Homeless");
@@ -12,6 +15,9 @@ int main () {
     int xcoord = 800;
     int ycoord = 400;
     int speed = 5;
+    
+    //asset use also idk dude
+    shuraim = LoadTexture("resources/sh.png");
 
     //game loop
     while (WindowShouldClose() == false) {
@@ -32,8 +38,9 @@ int main () {
         // then update of positions
         // DRAWING?!?!?!?!
         BeginDrawing();
-        ClearBackground(BLACK);
-        DrawCircle(xcoord, ycoord, 25, WHITE);
+        ClearBackground(GRAY);
+        DrawTexture(shuraim, xcoord, ycoord, WHITE);
+        // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
     }
 
