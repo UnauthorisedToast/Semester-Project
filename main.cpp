@@ -6,7 +6,6 @@
 using namespace std;
 
 //declaring assets idk dude
-Texture2D shuraim;
 
 int main () {
     SetTargetFPS(60);
@@ -17,10 +16,20 @@ int main () {
     int speed = 5;
     
     //asset use also idk dude
-    shuraim = LoadTexture("resources/sh.png");
+    Texture2D shuraim = LoadTexture("resources/sh.png");
+
+    //GUI loop
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RED);
+        if (IsKeyPressed(KEY_ENTER)) {
+            break;
+        }
+        EndDrawing();
+    }
 
     //game loop
-    while (WindowShouldClose() == false) {
+    while (!WindowShouldClose()) {
         //according to tutorial event handling goes first
         //movement
         if (IsKeyDown(KEY_D)) {
