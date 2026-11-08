@@ -29,6 +29,7 @@ int main () {
     Texture2D controls;
     Texture2D wasd;
     Texture2D border;
+    bool playMusic = 1;
     //audio/music
     Music menumusic = LoadMusicStream("music/foxsparrow.mp3");
     Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
@@ -52,17 +53,24 @@ int main () {
         if (IsKeyPressed(KEY_M)) {
             if (IsMusicStreamPlaying(menumusic)) {
                 PauseMusicStream(menumusic);
+                playMusic = 0;
             }
             else {
                 ResumeMusicStream(menumusic);
+                playMusic = 1;
             }
         }
         
     }
     //game loop
-    PlayMusicStream(gamemusic);
+    if (playMusic) {
+        PlayMusicStream(gamemusic);
+    }
+    
     while (!WindowShouldClose()) {
-        UpdateMusicStream(gamemusic);
+        if (playMusic) {
+            UpdateMusicStream(gamemusic);
+        }
         //according to tutorial event handling goes first
         //movement
         if (IsKeyDown(KEY_D)) {
