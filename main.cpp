@@ -32,6 +32,7 @@ int main () {
     Texture2D controls;
     Texture2D wasd;
     Texture2D border;
+    Texture2D backdrop = LoadTexture("sprites/bg.png");
     bool playMusic = 1;
     //audio/music
     Music menumusic = LoadMusicStream("music/foxsparrow.mp3");
