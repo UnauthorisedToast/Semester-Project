@@ -4,6 +4,7 @@
 #include <time.h>
 #include <string>
 #include "class.hpp"
+#include "func.hpp"
 using namespace std;
 
 
@@ -12,6 +13,7 @@ int main () {
     SetTargetFPS(60);
     InitWindow(1600, 800, "Shuraim Homeless");
     InitAudioDevice();
+    SetExitKey(KEY_NULL);
     //default coords
     int shuraimxcoord = 800;
     int shuraimycoord = 400;
@@ -60,6 +62,9 @@ int main () {
                 playMusic = 1;
             }
         }
+        if (WindowShouldClose() || (IsKeyPressed(KEY_ESCAPE))) {
+            CloseWindow();
+        }
         
     }
     //game loop
@@ -99,6 +104,9 @@ int main () {
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            menu(playMusic);
+        }
     }
 
 

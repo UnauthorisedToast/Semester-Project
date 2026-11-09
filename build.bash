@@ -1,1 +1,1 @@
-g++ class.hpp class.cpp main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ class.hpp func.hpp class.cpp func.cpp main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
