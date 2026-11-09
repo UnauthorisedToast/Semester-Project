@@ -105,6 +105,7 @@ int main () {
         // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
+            //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
             if (IsMusicStreamPlaying) {
                 StopMusicStream(gamemusic);
             }
