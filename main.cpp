@@ -92,19 +92,19 @@ int main () {
         if (IsKeyDown(KEY_S)) {
             shuraimycoord = shuraimycoord + speed;
         }
-        if (IsKeyDown(KEY_E) && (obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
-            obj1.giveClue();
-        }
         // then update of positions
         // DRAWING?!?!?!?!
         BeginDrawing();
-        ClearBackground(WHITE);
+        // ClearBackground(WHITE);
+        DrawTexture(backdrop, 0, 0, WHITE);
+        if (IsKeyDown(KEY_E) && (obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
+            obj1.giveClue();
+        }
         if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
             obj1.displayInter();
         }
         obj1.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
-        // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.

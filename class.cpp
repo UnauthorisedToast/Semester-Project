@@ -16,7 +16,7 @@ void interactable::draw() {
 }
 
 void interactable::giveClue() {
-    DrawText(clue, 0, 0, 20, BLACK);
+    DrawText(clue, 0, 0, 20, RED);
 }
 
 void interactable::displayInter() {
