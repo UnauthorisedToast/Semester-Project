@@ -40,6 +40,10 @@ int main () {
     // Music interrogationmusic = LoadMusicStream("music/UndertaleFinale.mp3");
     PlayMusicStream(menumusic);
 
+
+    //DO NOT TOUCH THIS LOOP ITS BACKUP CODE IN CASE THE FUNCTION FOR MENU EVER FAILS PLEASE DO NOT TOUCH THIS
+    
+    
     //GUI loop
     // while (!WindowShouldClose()) {
     //     UpdateMusicStream(menumusic);
