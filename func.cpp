@@ -36,6 +36,8 @@ void menu (bool &playMusic) {
         if (playMusic) {
             UpdateMusicStream(menumusic);
         }
+
+    }
     if (playMusic) {
         StopMusicStream(menumusic);
         PlayMusicStream(gamemusic);
