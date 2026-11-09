@@ -105,7 +105,13 @@ int main () {
         // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
+            if (IsMusicStreamPlaying) {
+                StopMusicStream(gamemusic);
+            }
             menu(playMusic);
+            if (playMusic) {
+                PlayMusicStream(gamemusic);
+            }
         }
     }
 

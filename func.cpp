@@ -3,12 +3,14 @@
 
 void menu (bool &playMusic) {
     Music menumusic = LoadMusicStream("music/foxsparrow.mp3");
-    Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
-    if (IsMusicStreamPlaying) {
-        StopMusicStream(gamemusic);
-        PlayMusicStream(menumusic);
+    PlayMusicStream(menumusic);
+    if (!playMusic) {
+        PauseMusicStream(menumusic);
     }
     while (!IsKeyPressed(KEY_ENTER)) {
+        if (playMusic) {
+            UpdateMusicStream(menumusic);
+        }
         BeginDrawing();
         ClearBackground(RED);
         if (IsKeyPressed(KEY_ENTER)) {
@@ -33,13 +35,6 @@ void menu (bool &playMusic) {
         if (WindowShouldClose() || (IsKeyPressed(KEY_ESCAPE))) {
             CloseWindow();
         }
-        if (playMusic) {
-            UpdateMusicStream(menumusic);
-        }
-
     }
-    if (playMusic) {
-        StopMusicStream(menumusic);
-        PlayMusicStream(gamemusic);
-    }
+    StopMusicStream(menumusic);
 }
