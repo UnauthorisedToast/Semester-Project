@@ -19,11 +19,12 @@ int main () {
     int shuraimycoord = 400;
     int speed = 5;
 
-    interactable obj;
-    obj.id = 1;
-    obj.xcoord = 800;
-    obj.ycoord = 400;
-    obj.path = "sprites/paperonfloor.png";
+    interactable obj1;
+    obj1.id = 1;
+    obj1.xcoord = 800;
+    obj1.ycoord = 400;
+    obj1.path = "sprites/paperonfloor.png";
+    obj1.clue = "The servants have been acting quite suspiciously.";
 
     //asset list
     //visual
@@ -90,17 +91,17 @@ int main () {
         if (IsKeyDown(KEY_S)) {
             shuraimycoord = shuraimycoord + speed;
         }
-        if (IsKeyDown(KEY_I) && (obj.inRange(shuraimxcoord, shuraimycoord, 100))) {
-            DrawText("INTERACT", 0, 0, 20, RED);
+        if (IsKeyDown(KEY_E) && (obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
+            obj1.giveClue();
         }
         // then update of positions
         // DRAWING?!?!?!?!
         BeginDrawing();
         ClearBackground(WHITE);
-        if (obj.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            DrawText("Press E to Interact", 0, 0, 25, RED);
+        if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            obj1.displayInter();
         }
-        obj.draw();
+        obj1.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         // DrawCircle(xcoord, ycoord, 25, WHITE);
         EndDrawing();
