@@ -28,6 +28,9 @@ void menu (bool &playMusic) {
         if (IsKeyPressed(KEY_ONE)) {
             EndDrawing();
             while (!IsKeyPressed(KEY_H)) {
+                if (playMusic) {
+                    UpdateMusicStream(menumusic);
+                }
                 BeginDrawing();
                 ClearBackground(RED);
                 DrawText("Controls", 0, 0, 40, WHITE);
