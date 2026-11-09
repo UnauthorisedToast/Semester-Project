@@ -41,34 +41,36 @@ int main () {
     PlayMusicStream(menumusic);
 
     //GUI loop
-    while (!WindowShouldClose()) {
-        UpdateMusicStream(menumusic);
-        BeginDrawing();
-        ClearBackground(RED);
-        if (IsKeyPressed(KEY_ENTER)) {
-            StopMusicStream(menumusic);
-            EndDrawing();
-            break;
-        }
-        EndDrawing();
-        if (IsKeyPressed(KEY_ONE)) {
-            //Controls
-        }
-        if (IsKeyPressed(KEY_M)) {
-            if (IsMusicStreamPlaying(menumusic)) {
-                PauseMusicStream(menumusic);
-                playMusic = 0;
-            }
-            else {
-                ResumeMusicStream(menumusic);
-                playMusic = 1;
-            }
-        }
-        if (WindowShouldClose() || (IsKeyPressed(KEY_ESCAPE))) {
-            CloseWindow();
-        }
+    // while (!WindowShouldClose()) {
+    //     UpdateMusicStream(menumusic);
+    //     BeginDrawing();
+    //     ClearBackground(RED);
+    //     if (IsKeyPressed(KEY_ENTER)) {
+    //         StopMusicStream(menumusic);
+    //         EndDrawing();
+    //         break;
+    //     }
+    //     EndDrawing();
+    //     if (IsKeyPressed(KEY_ONE)) {
+    //         //Controls
+    //     }
+    //     if (IsKeyPressed(KEY_M)) {
+    //         if (IsMusicStreamPlaying(menumusic)) {
+    //             PauseMusicStream(menumusic);
+    //             playMusic = 0;
+    //         }
+    //         else {
+    //             ResumeMusicStream(menumusic);
+    //             playMusic = 1;
+    //         }
+    //     }
+    //     if (WindowShouldClose() || (IsKeyPressed(KEY_ESCAPE))) {
+    //         CloseWindow();
+    //     }
         
-    }
+    // }
+
+    menu(playMusic);
     //game loop
     if (playMusic) {
         PlayMusicStream(gamemusic);
