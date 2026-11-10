@@ -72,7 +72,7 @@ int main () {
     //     }
         
     // }
-
+ 
     menu(playMusic);
     //game loop
     if (playMusic) {
