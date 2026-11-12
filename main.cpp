@@ -26,6 +26,12 @@ int main () {
     obj1.path = "sprites/paperonfloor.png";
     obj1.clue = "The servants have been acting quite suspiciously.";
 
+    interactable door;
+    door.id = 3;
+    door.xcoord = 0;
+    door.ycoord = 360;
+    door.path = "sprites/door.png";
+
     //asset list
     //visual
     Texture2D shuraim = LoadTexture("sprites/sh.png");
@@ -39,8 +45,6 @@ int main () {
     Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
     // Music interrogationmusic = LoadMusicStream("music/UndertaleFinale.mp3");
 
-
-    
  
     menu(playMusic);
     //game loop
@@ -71,8 +75,13 @@ int main () {
         BeginDrawing();
         // ClearBackground(WHITE);
         DrawTexture(backdrop, 0, 0, WHITE);
-        if (IsKeyDown(KEY_E) && (obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
-            obj1.giveClue();
+        if (IsKeyDown(KEY_E)) {
+            if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
+                obj1.giveClue();
+            }
+            if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                room2(playMusic);
+            }
         }
         if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
             obj1.displayInter();
@@ -82,7 +91,7 @@ int main () {
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
-            if (IsMusicStreamPlaying) {
+            if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
             menu(playMusic);

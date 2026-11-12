@@ -61,36 +61,29 @@ void menu (bool &playMusic) {
     StopMusicStream(menumusic);
 }
 
-void mainroom () {
-    Texture2D shuraim = LoadTexture("sprites/sh.png");
-    Texture2D controls;
-    Texture2D wasd;
-    Texture2D border;
+void room2 (bool playMusic) {
+    //Object Testing
+    interactable obj2;
+    obj2.id = 2;
+    obj2.xcoord = 400;
+    obj2.ycoord = 800;
+    obj2.path = "sprites/paperonfloor.png";
+    obj2.clue = "Clue 2";
+    //Initialising and importing music and textures n stuff idk
     Texture2D backdrop = LoadTexture("sprites/bg.png");
-    bool playMusic = 1;
-
-    InitAudioDevice();
-    SetExitKey(KEY_NULL);
-    //default coords
-    int shuraimxcoord = 800;
+    Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
+    PlayMusicStream(gamemusic);
+    int shuraimxcoord = 15;
     int shuraimycoord = 400;
     int speed = 5;
-
-    interactable obj1;
-    obj1.id = 1;
-    obj1.xcoord = 800;
-    obj1.ycoord = 400;
-    obj1.path = "sprites/paperonfloor.png";
-    obj1.clue = "The servants have been acting quite suspiciously.";
-
-    Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
-
-    while (!WindowShouldClose()) {
+    Texture2D shuraim = LoadTexture("sprites/sh.png");
+    if (playMusic) {
+        PlayMusicStream(gamemusic);
+    }
+    while (!WindowShouldClose) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
-        //according to tutorial event handling goes first
-        //movement
         if (IsKeyDown(KEY_D)) {
             shuraimxcoord = shuraimxcoord + speed;
         }
@@ -103,23 +96,14 @@ void mainroom () {
         if (IsKeyDown(KEY_S)) {
             shuraimycoord = shuraimycoord + speed;
         }
-        // then update of positions
-        // DRAWING?!?!?!?!
         BeginDrawing();
-        // ClearBackground(WHITE);
         DrawTexture(backdrop, 0, 0, WHITE);
-        if (IsKeyDown(KEY_E) && (obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
-            obj1.giveClue();
-        }
-        if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            obj1.displayInter();
-        }
-        obj1.draw();
+        obj2.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
-            if (IsMusicStreamPlaying) {
+            if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
             menu(playMusic);
@@ -128,4 +112,5 @@ void mainroom () {
             }
         }
     }
+    StopMusicStream(gamemusic);
 }

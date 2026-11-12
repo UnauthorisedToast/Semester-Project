@@ -3,4 +3,4 @@
 
 void menu (bool &playMusic);
 
-void mainroom ();
+void room2 (bool playMusic);
