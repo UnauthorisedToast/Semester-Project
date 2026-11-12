@@ -80,13 +80,25 @@ int main () {
                 obj1.giveClue();
             }
             if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
                 room2(playMusic);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
             }
         }
         if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
             obj1.displayInter();
         }
+        if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            door.displayInter();
+        }
         obj1.draw();
+        door.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {

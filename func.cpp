@@ -80,7 +80,7 @@ void room2 (bool playMusic) {
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
-    while (!WindowShouldClose) {
+    while (!IsKeyPressed(KEY_M)) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
@@ -100,6 +100,7 @@ void room2 (bool playMusic) {
         DrawTexture(backdrop, 0, 0, WHITE);
         obj2.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
+        
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
