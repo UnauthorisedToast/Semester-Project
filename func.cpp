@@ -1,4 +1,5 @@
 #include "func.hpp"
+#include "class.hpp"
 #include <raylib.h>
 
 void menu (bool &playMusic) {
@@ -58,4 +59,73 @@ void menu (bool &playMusic) {
         }
     }
     StopMusicStream(menumusic);
+}
+
+void mainroom () {
+    Texture2D shuraim = LoadTexture("sprites/sh.png");
+    Texture2D controls;
+    Texture2D wasd;
+    Texture2D border;
+    Texture2D backdrop = LoadTexture("sprites/bg.png");
+    bool playMusic = 1;
+
+    InitAudioDevice();
+    SetExitKey(KEY_NULL);
+    //default coords
+    int shuraimxcoord = 800;
+    int shuraimycoord = 400;
+    int speed = 5;
+
+    interactable obj1;
+    obj1.id = 1;
+    obj1.xcoord = 800;
+    obj1.ycoord = 400;
+    obj1.path = "sprites/paperonfloor.png";
+    obj1.clue = "The servants have been acting quite suspiciously.";
+
+    Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
+
+    while (!WindowShouldClose()) {
+        if (playMusic) {
+            UpdateMusicStream(gamemusic);
+        }
+        //according to tutorial event handling goes first
+        //movement
+        if (IsKeyDown(KEY_D)) {
+            shuraimxcoord = shuraimxcoord + speed;
+        }
+        if (IsKeyDown(KEY_A)) {
+            shuraimxcoord = shuraimxcoord - speed;
+        }
+        if (IsKeyDown(KEY_W)) {
+            shuraimycoord = shuraimycoord - speed;
+        }
+        if (IsKeyDown(KEY_S)) {
+            shuraimycoord = shuraimycoord + speed;
+        }
+        // then update of positions
+        // DRAWING?!?!?!?!
+        BeginDrawing();
+        // ClearBackground(WHITE);
+        DrawTexture(backdrop, 0, 0, WHITE);
+        if (IsKeyDown(KEY_E) && (obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
+            obj1.giveClue();
+        }
+        if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            obj1.displayInter();
+        }
+        obj1.draw();
+        DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
+        EndDrawing();
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
+            if (IsMusicStreamPlaying) {
+                StopMusicStream(gamemusic);
+            }
+            menu(playMusic);
+            if (playMusic) {
+                PlayMusicStream(gamemusic);
+            }
+        }
+    }
 }

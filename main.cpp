@@ -40,38 +40,7 @@ int main () {
     // Music interrogationmusic = LoadMusicStream("music/UndertaleFinale.mp3");
 
 
-    //DO NOT TOUCH THIS LOOP ITS BACKUP CODE IN CASE THE FUNCTION FOR MENU EVER FAILS PLEASE DO NOT TOUCH THIS
     
-    
-    //GUI loop
-    // while (!WindowShouldClose()) {
-    //     UpdateMusicStream(menumusic);
-    //     BeginDrawing();
-    //     ClearBackground(RED);
-    //     if (IsKeyPressed(KEY_ENTER)) {
-    //         StopMusicStream(menumusic);
-    //         EndDrawing();
-    //         break;
-    //     }
-    //     EndDrawing();
-    //     if (IsKeyPressed(KEY_ONE)) {
-    //         //Controls
-    //     }
-    //     if (IsKeyPressed(KEY_M)) {
-    //         if (IsMusicStreamPlaying(menumusic)) {
-    //             PauseMusicStream(menumusic);
-    //             playMusic = 0;
-    //         }
-    //         else {
-    //             ResumeMusicStream(menumusic);
-    //             playMusic = 1;
-    //         }
-    //     }
-    //     if (WindowShouldClose() || (IsKeyPressed(KEY_ESCAPE))) {
-    //         CloseWindow();
-    //     }
-        
-    // }
  
     menu(playMusic);
     //game loop
