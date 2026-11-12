@@ -73,7 +73,9 @@ int main () {
         // then update of positions
         // DRAWING?!?!?!?!
         BeginDrawing();
-        // ClearBackground(WHITE);
+        //ROOM 1 AND ROOM 2 DISPLAYS ARE PURELY FOR TESTING
+        //Using them later isnt a bad idea tho tbh...
+        DrawText("Room 1", 0, 1560, 40, YELLOW);
         DrawTexture(backdrop, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
             if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {

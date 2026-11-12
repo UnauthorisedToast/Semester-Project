@@ -111,6 +111,7 @@ void room2 (bool playMusic) {
         BeginDrawing();
         DrawTexture(backdrop, 0, 0, WHITE);
         obj2.draw();
+        DrawText("Room 2", 0, 1560, 40, YELLOW);
         door.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         if (IsKeyDown(KEY_E)) {
