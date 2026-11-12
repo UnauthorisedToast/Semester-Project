@@ -37,8 +37,9 @@ void menu (bool &playMusic) {
                 DrawText("Controls", 0, 0, 40, WHITE);
                 DrawText("WASD for movement", 0, 60, 25, WHITE);
                 DrawText("E for interaction", 0, 90, 25, WHITE);
-                DrawText("Esc for menu", 0, 120, 25, WHITE);
-                DrawText("H to go back", 0, 150, 25, WHITE);
+                DrawText("I to leave a room", 0, 120, 25, WHITE);
+                DrawText("Esc for menu", 0, 150, 25, WHITE);
+                DrawText("H to go back", 0, 180, 25, WHITE);
                 EndDrawing();
             }
             BeginDrawing();
@@ -65,22 +66,33 @@ void room2 (bool playMusic) {
     //Object Testing
     interactable obj2;
     obj2.id = 2;
-    obj2.xcoord = 400;
-    obj2.ycoord = 800;
+    obj2.xcoord = 800;
+    obj2.ycoord = 400;
     obj2.path = "sprites/paperonfloor.png";
     obj2.clue = "Clue 2";
+
+    interactable door;
+    door.id = 4;
+    door.xcoord = 1560;
+    door.ycoord = 320;
+    door.path = "sprites/door.png";
+
     //Initialising and importing music and textures n stuff idk
     Texture2D backdrop = LoadTexture("sprites/bg.png");
     Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
     PlayMusicStream(gamemusic);
-    int shuraimxcoord = 15;
-    int shuraimycoord = 400;
+    int shuraimxcoord = 1500;
+    int shuraimycoord = 350;
     int speed = 5;
+    bool exitroom = 0;
     Texture2D shuraim = LoadTexture("sprites/sh.png");
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
-    while (!IsKeyPressed(KEY_M)) {
+    while (!exitroom) {
+        if ((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_I)) {
+            exitroom = 1;
+        }
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
@@ -99,8 +111,16 @@ void room2 (bool playMusic) {
         BeginDrawing();
         DrawTexture(backdrop, 0, 0, WHITE);
         obj2.draw();
+        door.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
-        
+        if (IsKeyDown(KEY_E)) {
+            if ((obj2.inRange(shuraimxcoord, shuraimycoord, 100))) {
+                obj2.giveClue();
+            }
+        }
+        if (obj2.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            obj2.displayInter();
+        }
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
@@ -112,6 +132,7 @@ void room2 (bool playMusic) {
                 PlayMusicStream(gamemusic);
             }
         }
+        
     }
     StopMusicStream(gamemusic);
 }

@@ -29,7 +29,7 @@ int main () {
     interactable door;
     door.id = 3;
     door.xcoord = 0;
-    door.ycoord = 360;
+    door.ycoord = 320;
     door.path = "sprites/door.png";
 
     //asset list
@@ -93,9 +93,6 @@ int main () {
         }
         if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
             obj1.displayInter();
-        }
-        if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            door.displayInter();
         }
         obj1.draw();
         door.draw();
