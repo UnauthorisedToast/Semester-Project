@@ -89,10 +89,7 @@ void room2 (bool playMusic) {
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
-    while (!exitroom) {
-        if ((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_I)) {
-            exitroom = 1;
-        }
+    while (!((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_I))) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
@@ -135,4 +132,8 @@ void room2 (bool playMusic) {
         
     }
     StopMusicStream(gamemusic);
+}
+
+void interrogation (bool &playMusic) {
+    
 }

@@ -19,6 +19,7 @@ int main () {
     int shuraimxcoord = 800;
     int shuraimycoord = 400;
     int speed = 5;
+    int questionsLeft = 15;
 
     interactable obj1;
     obj1.id = 1;
