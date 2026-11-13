@@ -7,7 +7,8 @@
 #include "func.hpp"
 using namespace std;
 
-
+//DEV NOTE CURRENT
+//Test music for room 2 (pase play and mute stuff yk)
 
 int main () {
     SetTargetFPS(60);
@@ -75,7 +76,7 @@ int main () {
         BeginDrawing();
         //ROOM 1 AND ROOM 2 DISPLAYS ARE PURELY FOR TESTING
         //Using them later isnt a bad idea tho tbh...
-        DrawText("Room 1", 0, 1560, 40, YELLOW);
+
         DrawTexture(backdrop, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
             if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
