@@ -39,7 +39,7 @@ int main () {
     Texture2D shuraim = LoadTexture("sprites/sh.png");
     Texture2D controls;
     Texture2D wasd;
-    Texture2D border = LoadTexture("sprites/tv.png");
+    Texture2D tv = LoadTexture("sprites/tv.png");
     Texture2D backdrop = LoadTexture("sprites/bg.png");
     bool playMusic = 1;
     //audio/music

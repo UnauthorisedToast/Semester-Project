@@ -17,4 +17,5 @@ class interactable {
         void draw();
         void giveClue();
         void displayInter();
+        void interrogation(bool &playMusic);
 };

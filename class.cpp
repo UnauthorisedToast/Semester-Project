@@ -22,3 +22,16 @@ void interactable::giveClue() {
 void interactable::displayInter() {
     DrawText("Hold E to Interact", xcoord, ycoord - 30, 25, RED);
 }
+
+void interactable::interrogation (bool &playMusic) {
+    Texture2D backdrop = LoadTexture("sprites/bg.png");
+    Texture2D tv = LoadTexture("sprites/tv.png");
+    Music intemusic = LoadMusicStream("music/interrogationmusic.mp3");
+    PlayMusicStream(intemusic);
+    if (playMusic) {
+        PlayMusicStream(intemusic);
+    }
+    while (!(IsKeyPressed(KEY_M))) {
+        //make interrogate a class function
+    }
+}

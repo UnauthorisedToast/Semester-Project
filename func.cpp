@@ -134,6 +134,3 @@ void room2 (bool playMusic) {
     StopMusicStream(gamemusic);
 }
 
-void interrogation (bool &playMusic) {
-    
-}
