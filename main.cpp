@@ -101,7 +101,7 @@ int main () {
         obj1.draw();
         door.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
-        DrawTexture(border, 0, 0, WHITE);
+        // DrawTexture(border, 0, 0, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
