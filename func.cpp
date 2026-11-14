@@ -3,7 +3,7 @@
 #include <raylib.h>
 
 void menu (bool &playMusic) {
-    Music menumusic = LoadMusicStream("music/foxsparrow.mp3");
+    Music menumusic = LoadMusicStream("music/menumusic.wav");
     PlayMusicStream(menumusic);
     if (!playMusic) {
         PauseMusicStream(menumusic);
@@ -79,7 +79,7 @@ void room2 (bool playMusic) {
 
     //Initialising and importing music and textures n stuff idk
     Texture2D backdrop = LoadTexture("sprites/bg.png");
-    Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
+    Music gamemusic = LoadMusicStream("music/gamemusic.wav");
     PlayMusicStream(gamemusic);
     Texture2D tv = LoadTexture("sprites/tv.png");
     int shuraimxcoord = 1500;
@@ -111,15 +111,16 @@ void room2 (bool playMusic) {
         obj2.draw();
         door.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
+        
+        if (obj2.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            obj2.displayInter();
+        }
+        DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
             if ((obj2.inRange(shuraimxcoord, shuraimycoord, 100))) {
                 obj2.giveClue();
             }
         }
-        if (obj2.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            obj2.displayInter();
-        }
-        DrawTexture(tv, 0, 0, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.

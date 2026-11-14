@@ -17,7 +17,7 @@ void interactable::draw() {
 }
 
 void interactable::giveClue() {
-    DrawText(clue, 0, 0, 20, RED);
+    DrawText(clue, 910, 650, 15, RED);
 }
 
 void interactable::displayInter() {
@@ -38,7 +38,8 @@ void interactable::interrogation (bool &playMusic) {
         }
         BeginDrawing();
         ClearBackground(GRAY);
-        DrawText("Q1. How are you?", 0, 0, 25, RED);
+        DrawTexture(tv, 0, 0, WHITE);
+        DrawText("Q1. How are you?", 140, 140, 25, RED);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
