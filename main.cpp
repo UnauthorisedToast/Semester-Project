@@ -28,6 +28,11 @@ int main () {
     obj1.path = "sprites/paperonfloor.png";
     obj1.clue = "The servants have been acting quite suspiciously.";
 
+    interactable person1;
+    person1.xcoord = 1200;
+    person1.ycoord = 200;
+    person1.path = "sprites/images.png";
+
     interactable door;
     door.id = 3;
     door.xcoord = 0;

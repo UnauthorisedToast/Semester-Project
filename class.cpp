@@ -1,4 +1,5 @@
 #include "class.hpp"
+#include "func.hpp"
 #include <raylib.h>
 #include <string>
 
@@ -32,6 +33,22 @@ void interactable::interrogation (bool &playMusic) {
         PlayMusicStream(intemusic);
     }
     while (!(IsKeyPressed(KEY_M))) {
-        //make interrogate a class function
+        if (playMusic) {
+            UpdateMusicStream(intemusic);
+        }
+        BeginDrawing();
+        ClearBackground(GRAY);
+        DrawText("Q1. How are you?", 0, 0, 25, RED);
+        EndDrawing();
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
+            if (IsMusicStreamPlaying(intemusic)) {
+                StopMusicStream(intemusic);
+            }
+            menu(playMusic);
+            if (playMusic) {
+                PlayMusicStream(intemusic);
+            }
+        }
     }
 }
