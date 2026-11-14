@@ -11,6 +11,14 @@ bash build.bash
 You may use the following command for ease and then just run "run"
 alias run="build bash.bash && ./a.out"
 
+For Windows Users:
+Open Visual Studio
+Create a New C++ Project
+Download all project files and extract them into a folder
+Copy all the files into your project
+Open all .cpp and .hpp files in Visual Studio
+Run the Program
+
 For Code Reviewers:
 
 When I started this project, I ran into many problems and used sollutions that only God and I knew the logic of. Now only God does. Please do not attempt to understand the code. It would be a vain attempt.
