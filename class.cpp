@@ -51,4 +51,5 @@ void interactable::interrogation (bool &playMusic) {
             }
         }
     }
+    StopMusicStream(intemusic);
 }

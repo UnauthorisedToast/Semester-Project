@@ -31,11 +31,11 @@ int main () {
     interactable person1;
     person1.xcoord = 1200;
     person1.ycoord = 200;
-    person1.path = "sprites/images.png";
+    person1.path = "sprites/sh.png";
 
     interactable door;
     door.id = 3;
-    door.xcoord = 0;
+    door.xcoord = 100;
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
@@ -105,8 +105,22 @@ int main () {
         }
         obj1.draw();
         door.draw();
+        person1.draw();
+        if (person1.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            
+            if (IsKeyPressed(KEY_E)) {
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                person1.interrogation(playMusic);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+            }
+            
+        }
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
-        // DrawTexture(border, 0, 0, WHITE);
+        DrawTexture(tv, 0, 0, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.

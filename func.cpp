@@ -73,7 +73,7 @@ void room2 (bool playMusic) {
 
     interactable door;
     door.id = 4;
-    door.xcoord = 1560;
+    door.xcoord = 1460;
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
@@ -81,6 +81,7 @@ void room2 (bool playMusic) {
     Texture2D backdrop = LoadTexture("sprites/bg.png");
     Music gamemusic = LoadMusicStream("music/buckshotroulleteost.mp3");
     PlayMusicStream(gamemusic);
+    Texture2D tv = LoadTexture("sprites/tv.png");
     int shuraimxcoord = 1500;
     int shuraimycoord = 350;
     int speed = 5;
@@ -118,6 +119,7 @@ void room2 (bool playMusic) {
         if (obj2.inRange(shuraimxcoord, shuraimycoord, 100)) {
             obj2.displayInter();
         }
+        DrawTexture(tv, 0, 0, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
