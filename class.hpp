@@ -10,6 +10,7 @@ class interactable {
         int ycoord;
         const char* path;
         const char* clue;
+        bool q[5] = {0, 0, 0, 0, 0};
         //location of texture in file not location of texture on window
         
 
@@ -17,5 +18,5 @@ class interactable {
         void draw();
         void giveClue();
         void displayInter();
-        void interrogation(bool &playMusic);
+        void interrogation(bool &playMusic, int &questionsLeft);
 };

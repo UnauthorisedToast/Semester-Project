@@ -19,7 +19,7 @@ int main () {
     int shuraimxcoord = 800;
     int shuraimycoord = 400;
     int speed = 5;
-    int questionsLeft = 15;
+    int questionsLeft = 200;
 
     interactable obj1;
     obj1.id = 1;
@@ -32,6 +32,11 @@ int main () {
     person1.xcoord = 1200;
     person1.ycoord = 200;
     person1.path = "sprites/sh.png";
+
+    interactable person2;
+    person2.xcoord = 400;
+    person2.ycoord = 200;
+    person2.path = "sprites/sh.png";
 
     interactable door;
     door.id = 3;
@@ -91,19 +96,7 @@ int main () {
         obj1.draw();
         door.draw();
         person1.draw();
-        if (person1.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            
-            if (IsKeyPressed(KEY_E)) {
-                if (IsMusicStreamPlaying(gamemusic)) {
-                    StopMusicStream(gamemusic);
-                }
-                person1.interrogation(playMusic);
-                if (playMusic) {
-                    PlayMusicStream(gamemusic);
-                }
-            }
-            
-        }
+        person2.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
@@ -120,6 +113,24 @@ int main () {
                     PlayMusicStream(gamemusic);
                 }
                 BeginDrawing();
+            }
+            if (person1.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                person1.interrogation(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+            }
+            if (person2.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                person2.interrogation(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
             }
         }
         EndDrawing();
