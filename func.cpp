@@ -135,5 +135,82 @@ void room2 (bool playMusic) {
         
     }
     StopMusicStream(gamemusic);
+
+
 }
 
+void room3 (bool playMusic) {
+    //Object Testing
+    interactable paper2;
+    paper2.xcoord = 1200;
+    paper2.ycoord = 300;
+    paper2.path = "sprites/paperonfloor.png";
+    paper2.clue = "Clue 3";
+
+    interactable door;
+    door.id = 5;
+    door.xcoord = 100;
+    door.ycoord = 320;
+    door.path = "sprites/door.png";
+
+    //Initialising and importing music and textures n stuff idk
+    Texture2D backdrop = LoadTexture("sprites/bg.png");
+    Music gamemusic = LoadMusicStream("music/gamemusic.wav");
+    PlayMusicStream(gamemusic);
+    Texture2D tv = LoadTexture("sprites/tv.png");
+    int shuraimxcoord = 100;
+    int shuraimycoord = 350;
+    int speed = 5;
+    bool exitroom = 0;
+    Texture2D shuraim = LoadTexture("sprites/sh.png");
+    if (playMusic) {
+        PlayMusicStream(gamemusic);
+    }
+    while (!((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_I))) {
+        if (playMusic) {
+            UpdateMusicStream(gamemusic);
+        }
+        if (IsKeyDown(KEY_D)) {
+            shuraimxcoord = shuraimxcoord + speed;
+        }
+        if (IsKeyDown(KEY_A)) {
+            shuraimxcoord = shuraimxcoord - speed;
+        }
+        if (IsKeyDown(KEY_W)) {
+            shuraimycoord = shuraimycoord - speed;
+        }
+        if (IsKeyDown(KEY_S)) {
+            shuraimycoord = shuraimycoord + speed;
+        }
+        BeginDrawing();
+        DrawTexture(backdrop, 0, 0, WHITE);
+        paper2.draw();
+        door.draw();
+        DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
+        
+        if (paper2.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            paper2.displayInter();
+        }
+        DrawTexture(tv, 0, 0, WHITE);
+        if (IsKeyDown(KEY_E)) {
+            if ((paper2.inRange(shuraimxcoord, shuraimycoord, 100))) {
+                paper2.giveClue();
+            }
+        }
+        EndDrawing();
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
+            if (IsMusicStreamPlaying(gamemusic)) {
+                StopMusicStream(gamemusic);
+            }
+            menu(playMusic);
+            if (playMusic) {
+                PlayMusicStream(gamemusic);
+            }
+        }
+        
+    }
+    StopMusicStream(gamemusic);
+
+    
+}

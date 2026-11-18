@@ -3,7 +3,7 @@
 #include <raylib.h>
 #include <string>
 
-bool interactable::inRange(int shuraimx, int shuraimy, int range) {
+bool interactable::inRange(int shuraimx, int shuraimy, int range = 100) {
     if ((shuraimx >= (xcoord - range)) && (shuraimx <= (xcoord + range)) && (shuraimy >= (ycoord - range)) && (shuraimy <= (ycoord + range))) {
         return true;
     }

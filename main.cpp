@@ -44,6 +44,11 @@ int main () {
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
+    interactable door2;
+    door2.xcoord = 1460;
+    door2.ycoord = 320;
+    door2.path = "sprites/door2.png";
+
     //asset list
     //visual
     Texture2D shuraim = LoadTexture("sprites/sh.png");
@@ -95,10 +100,12 @@ int main () {
         }
         obj1.draw();
         door.draw();
+        door2.draw();
         person1.draw();
         person2.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         DrawTexture(tv, 0, 0, WHITE);
+        //Interactables and stuff yk type shi
         if (IsKeyDown(KEY_E)) {
             if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
                 obj1.giveClue();
@@ -115,6 +122,7 @@ int main () {
                 BeginDrawing();
             }
             if (person1.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
@@ -122,8 +130,10 @@ int main () {
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
+                BeginDrawing();
             }
             if (person2.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
@@ -131,6 +141,18 @@ int main () {
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
+                BeginDrawing();
+            }
+            if (door2.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                room3(playMusic);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
             }
         }
         EndDrawing();
