@@ -166,7 +166,7 @@ void room3 (bool playMusic) {
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
-    while (!((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_I))) {
+    while (!((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_E))) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
