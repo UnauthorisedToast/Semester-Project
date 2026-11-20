@@ -2,6 +2,8 @@
 #include "class.hpp"
 #include <raylib.h>
 
+
+
 void menu (bool &playMusic) {
     Music menumusic = LoadMusicStream("music/menumusic.wav");
     PlayMusicStream(menumusic);
@@ -44,6 +46,7 @@ void menu (bool &playMusic) {
             }
             BeginDrawing();
         }
+        
         if (IsKeyPressed(KEY_M)) {
             if (IsMusicStreamPlaying(menumusic)) {
                 PauseMusicStream(menumusic);
@@ -60,6 +63,33 @@ void menu (bool &playMusic) {
         }
     }
     StopMusicStream(menumusic);
+}
+
+void incrim (bool &playMusic) {
+    Music incrimmusic = LoadMusicStream("music/incrimmusic.mp3");
+    Texture2D incrimscreen = LoadTexture("sprites/incrimscreen.png");
+    if (playMusic) {
+        PlayMusicStream(incrimmusic);
+    }
+    while (!IsKeyPressed(KEY_L)) {
+        if (playMusic) {
+            UpdateMusicStream(incrimmusic);
+        }
+        BeginDrawing();
+        DrawTexture(incrimscreen, 0, 0, WHITE);
+        EndDrawing();
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
+            if (IsMusicStreamPlaying(incrimmusic)) {
+                StopMusicStream(incrimmusic);
+            }
+            menu(playMusic);
+            if (playMusic) {
+                PlayMusicStream(incrimmusic);
+            }
+        }
+    }
+    StopMusicStream(incrimmusic);
 }
 
 void room2 (bool playMusic) {
@@ -105,6 +135,15 @@ void room2 (bool playMusic) {
         }
         if (IsKeyDown(KEY_S)) {
             shuraimycoord = shuraimycoord + speed;
+        }
+        if (IsKeyDown(KEY_K)) {
+            if (IsMusicStreamPlaying(gamemusic)) {
+                StopMusicStream(gamemusic);
+            }
+            incrim(playMusic);
+            if (playMusic) {
+                PlayMusicStream(gamemusic);
+            } 
         }
         BeginDrawing();
         DrawTexture(backdrop, 0, 0, WHITE);
@@ -166,7 +205,7 @@ void room3 (bool playMusic) {
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
-    while (!((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_E))) {
+    while (!((door.inRange(shuraimxcoord, shuraimycoord, 100)) && IsKeyDown(KEY_I))) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
@@ -181,6 +220,15 @@ void room3 (bool playMusic) {
         }
         if (IsKeyDown(KEY_S)) {
             shuraimycoord = shuraimycoord + speed;
+        }
+        if (IsKeyDown(KEY_K)) {
+            if (IsMusicStreamPlaying(gamemusic)) {
+                StopMusicStream(gamemusic);
+            }
+            incrim(playMusic);
+            if (playMusic) {
+                PlayMusicStream(gamemusic);
+            } 
         }
         BeginDrawing();
         DrawTexture(backdrop, 0, 0, WHITE);

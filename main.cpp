@@ -155,6 +155,15 @@ int main () {
                 BeginDrawing();
             }
         }
+        if (IsKeyDown(KEY_K)) {
+            if (IsMusicStreamPlaying(gamemusic)) {
+                StopMusicStream(gamemusic);
+            }
+            incrim(playMusic);
+            if (playMusic) {
+                PlayMusicStream(gamemusic);
+            } 
+        }
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.
