@@ -1,7 +1,9 @@
 #include "class.hpp"
 #include "func.hpp"
 #include <raylib.h>
+#include <chrono>
 #include <string>
+using namespace std;
 
 bool interactable::inRange(int shuraimx, int shuraimy, int range = 100) {
     if ((shuraimx >= (xcoord - range)) && (shuraimx <= (xcoord + range)) && (shuraimy >= (ycoord - range)) && (shuraimy <= (ycoord + range))) {
@@ -32,6 +34,7 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft) {
     int linestartx, lineendx, liney;
     linestartx = 120;
     lineendx = 1000;
+    bool isquestionasked = 0;
     if (playMusic) {
         PlayMusicStream(intemusic);
     }
@@ -46,31 +49,37 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft) {
         if (questionsLeft>0) {
             DrawText("Q1. Where were you at the time of murder?", 140, 140, 25, RED);
             DrawText("Q2. What were you doing at the time of murder?", 140, 170, 25, RED);
-            DrawText("Q3. Anything suspicious that you would like to report?", 140, 200, 25, RED);
+            DrawText("Q3. What were your relations like with the victim?", 140, 200, 25, RED);
             DrawText("Q4. Why are you so nervous?", 140, 230, 25, RED);
-            DrawText("Q5. What were your relations like with the victim?", 140, 260, 25, RED);
-            DrawText("Press question number on keyboard to ask question.", 910, 650, 15, RED);
-            DrawText("Press M to exit the interrogation.", 910, 670, 15, RED);
-            
+            DrawText("Q5. Anything suspicious that you would like to report?", 140, 260, 25, RED);
+            if (!isquestionasked) {
+                DrawText("Press question number on keyboard to ask question.", 910, 650, 15, RED);            
+
+            }
             //Checks if a questions been asked or no
             if ((IsKeyPressed(KEY_ONE)) && (!q[0])) {
                 q[0] = 1;
+                isquestionasked = 1;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_TWO) && (!q[1])) {
                 q[1] = 1;
+                isquestionasked = 1;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_THREE) && (!q[2])) {
                 q[2] = 1;
+                isquestionasked = 1;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_FOUR) && (!q[3])) {
                 q[3] = 1;
+                isquestionasked = 1;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_FIVE) && (!q[4])) {
                 q[4] = 1;
+                isquestionasked = 1;
                 questionsLeft--;
             }
 
@@ -82,9 +91,22 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft) {
                 }
             }
         }
-        else {
-            DrawText("You have no more questions left.", 910, 650, 15, RED);
-        }
+
+        if (q[0]) {
+                DrawText(ans1, 912, 650, 15, RED);
+            }
+            if (q[1]) {
+                DrawText(ans2, 912, 666, 15, RED);
+            }
+            if (q[2]) {
+                DrawText(ans3, 912, 682, 15, RED);
+            }
+            if (q[3]) {
+                DrawText(ans4, 912, 698, 15, RED);
+            }
+            if (q[4]) {
+                DrawText(ans5, 912, 714, 15, RED);
+            }
         
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {

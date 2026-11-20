@@ -1,6 +1,7 @@
 #include "func.hpp"
 #include "class.hpp"
 #include <raylib.h>
+using namespace std;
 
 
 
@@ -194,7 +195,7 @@ void incrim (bool &playMusic) {
     StopMusicStream(incrimmusic);
 }
 
-void room2 (bool playMusic) {
+void room2 (bool playMusic, int &questionsLeft) {
     //Object Testing
     interactable obj2;
     obj2.id = 2;
@@ -208,6 +209,16 @@ void room2 (bool playMusic) {
     door.xcoord = 1460;
     door.ycoord = 320;
     door.path = "sprites/door.png";
+
+    interactable butler;
+    butler.xcoord = 1200;
+    butler.ycoord = 200;
+    butler.path = "sprites/sh.png";
+    butler.ans1 = "I was in the lawn.";
+    butler.ans2 = "I was about to leave the estate.";
+    butler.ans3 = "He was amazing. The madame on the contrary...";
+    butler.ans4 = "Can't be nervous here... The madame isn't around...";
+    butler.ans5 = "The chef has been leaving in the afternoon lately.";
 
     //Initialising and importing music and textures n stuff idk
     Texture2D backdrop = LoadTexture("sprites/bg.png");
@@ -251,6 +262,7 @@ void room2 (bool playMusic) {
         DrawTexture(backdrop, 0, 0, WHITE);
         obj2.draw();
         door.draw();
+        butler.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         
         if (obj2.inRange(shuraimxcoord, shuraimycoord, 100)) {
@@ -260,6 +272,17 @@ void room2 (bool playMusic) {
         if (IsKeyDown(KEY_E)) {
             if ((obj2.inRange(shuraimxcoord, shuraimycoord, 100))) {
                 obj2.giveClue();
+            }
+            if (butler.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                butler.interrogation(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
             }
         }
         EndDrawing();
@@ -280,7 +303,7 @@ void room2 (bool playMusic) {
 
 }
 
-void room3 (bool playMusic) {
+void room3 (bool playMusic, int &questionsLeft) {
     //Object Testing
     interactable paper2;
     paper2.xcoord = 1200;
@@ -293,6 +316,26 @@ void room3 (bool playMusic) {
     door.xcoord = 100;
     door.ycoord = 320;
     door.path = "sprites/door.png";
+
+    interactable queen;
+    queen.xcoord = 400;
+    queen.ycoord = 200;
+    queen.path = "sprites/sh.png";
+    queen.ans1 = "I was in the kitchen.";
+    queen.ans2 = "I was instructing the chef on what to make tomorrow.";
+    queen.ans3 = "Lovely. We were married afterall.";
+    queen.ans4 = "Nervous...? What reason do I have to be nervous...";
+    queen.ans5 = "Are you going to hold the QUEEN in custody for long?";
+
+    interactable servant;
+    servant.xcoord = 1200;
+    servant.ycoord = 200;
+    servant.path = "sprites/sh.png";
+    servant.ans1 = "I was in the living room when I heard the screams.";
+    servant.ans2 = "I was cleaning the floors; then, I called you.";
+    servant.ans3 = "As opposed to his wife, he was amazing to the staff.";
+    servant.ans4 = "No reason to be afraid... right...?";
+    servant.ans5 = "The madame... uhm... requested me to inform... nevermind...";
 
     //Initialising and importing music and textures n stuff idk
     Texture2D backdrop = LoadTexture("sprites/bg.png");
@@ -336,6 +379,8 @@ void room3 (bool playMusic) {
         DrawTexture(backdrop, 0, 0, WHITE);
         paper2.draw();
         door.draw();
+        queen.draw();
+        servant.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         
         if (paper2.inRange(shuraimxcoord, shuraimycoord, 100)) {
@@ -346,6 +391,29 @@ void room3 (bool playMusic) {
             if ((paper2.inRange(shuraimxcoord, shuraimycoord, 100))) {
                 paper2.giveClue();
             }
+            if (queen.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                queen.interrogation(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
+            }
+            if (servant.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                servant.interrogation(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
+            }
+
         }
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {

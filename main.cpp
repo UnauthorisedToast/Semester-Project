@@ -24,19 +24,30 @@ int main () {
     interactable obj1;
     obj1.id = 1;
     obj1.xcoord = 800;
-    obj1.ycoord = 400;
+    obj1.ycoord = 200;
     obj1.path = "sprites/paperonfloor.png";
     obj1.clue = "The servants have been acting quite suspiciously.";
 
-    interactable person1;
-    person1.xcoord = 1200;
-    person1.ycoord = 200;
-    person1.path = "sprites/sh.png";
+    
+    interactable guard;
+    guard.xcoord = 800;
+    guard.ycoord = 400;
+    guard.path = "sprites/sh.png";
+    guard.ans1 = "Right outside the door.";
+    guard.ans2 = "Standing guard. Watched the butler leave.";
+    guard.ans3 = "Amazing. Once made a mistake, he didn't even say nun.";
+    guard.ans4 = "Nervous? Me? I'm trained in a bajillion martial arts";
+    guard.ans5 = "Not really to be honest.";
 
-    interactable person2;
-    person2.xcoord = 400;
-    person2.ycoord = 200;
-    person2.path = "sprites/sh.png";
+    interactable chef;
+    chef.xcoord = 400;
+    chef.ycoord = 200;
+    chef.path = "sprites/sh.png";
+    chef.ans1 = "In my quarters.";
+    chef.ans2 = "Thinking what to make the next day.";
+    chef.ans3 = "He was a good man. Its a shame what happened.";
+    chef.ans4 = "I've got food on the stove and you're holding me up.";
+    chef.ans5 = "Nup.";
 
     interactable door;
     door.id = 3;
@@ -101,8 +112,8 @@ int main () {
         obj1.draw();
         door.draw();
         door2.draw();
-        person1.draw();
-        person2.draw();
+        guard.draw();
+        chef.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         DrawTexture(tv, 0, 0, WHITE);
         //Interactables and stuff yk type shi
@@ -115,29 +126,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                room2(playMusic);
-                if (playMusic) {
-                    PlayMusicStream(gamemusic);
-                }
-                BeginDrawing();
-            }
-            if (person1.inRange(shuraimxcoord, shuraimycoord, 100)) {
-                EndDrawing();
-                if (IsMusicStreamPlaying(gamemusic)) {
-                    StopMusicStream(gamemusic);
-                }
-                person1.interrogation(playMusic, questionsLeft);
-                if (playMusic) {
-                    PlayMusicStream(gamemusic);
-                }
-                BeginDrawing();
-            }
-            if (person2.inRange(shuraimxcoord, shuraimycoord, 100)) {
-                EndDrawing();
-                if (IsMusicStreamPlaying(gamemusic)) {
-                    StopMusicStream(gamemusic);
-                }
-                person2.interrogation(playMusic, questionsLeft);
+                room2(playMusic, questionsLeft);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -148,7 +137,29 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                room3(playMusic);
+                room3(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
+            }
+            if (guard.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                guard.interrogation(playMusic, questionsLeft);
+                if (playMusic) {
+                    PlayMusicStream(gamemusic);
+                }
+                BeginDrawing();
+            }
+            if (chef.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                EndDrawing();
+                if (IsMusicStreamPlaying(gamemusic)) {
+                    StopMusicStream(gamemusic);
+                }
+                chef.interrogation(playMusic, questionsLeft);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
