@@ -35,7 +35,7 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft) {
     if (playMusic) {
         PlayMusicStream(intemusic);
     }
-    while (!(IsKeyPressed(KEY_M))) {
+    while (!(IsKeyPressed(KEY_I))) {
         if (playMusic) {
             UpdateMusicStream(intemusic);
         }
