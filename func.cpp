@@ -65,6 +65,52 @@ void menu (bool &playMusic) {
     StopMusicStream(menumusic);
 }
 
+void winscreen (bool &playMusic) {
+    Texture2D tv = LoadTexture("sprites/tv.png");
+    Music winmusic = LoadMusicStream("music/winmusic.mp3");
+    if (playMusic) {
+        PlayMusicStream(winmusic);
+    }
+    while (!(WindowShouldClose() || IsKeyPressed(KEY_ESCAPE))) {
+        if (playMusic) {
+            UpdateMusicStream(winmusic);
+        }
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTexture(tv, 0, 0, WHITE);
+        //code is from google search NOT CLAUDE PLEASE I NEEDED HELP DONT GIVE ME NEGATIVE MARKS PLEEASSEEEE
+        int textlen = MeasureText("You win!", 40);
+        int textposx = (1600 - textlen) / 2;
+        int textposy = (800 - 40) / 2;
+        DrawText("You win!", textposx, textposy, 40, RED);
+        EndDrawing();
+    }
+    StopMusicStream(winmusic);
+}
+
+void losescreen (bool &playMusic) {
+    Texture2D tv = LoadTexture("sprites/tv.png");
+    Music losemusic = LoadMusicStream("music/losemusic.mp3");
+    if (playMusic) {
+        PlayMusicStream(losemusic);
+    }
+    while (!(WindowShouldClose() || IsKeyPressed(KEY_ESCAPE))) {
+        if (playMusic) {
+            UpdateMusicStream(losemusic);
+        }
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTexture(tv, 0, 0, WHITE);
+        //code is from google search NOT CLAUDE PLEASE I NEEDED HELP DONT GIVE ME NEGATIVE MARKS PLEEASSEEEE
+        int textlen = MeasureText("You lose.", 40);
+        int textposx = (1600 - textlen) / 2;
+        int textposy = (800 - 40) / 2;
+        DrawText("You lose.", textposx, textposy, 40, RED);
+        EndDrawing();
+    }
+    StopMusicStream(losemusic);
+}
+
 void incrim (bool &playMusic) {
     Music incrimmusic = LoadMusicStream("music/incrimmusic.mp3");
     Texture2D incrimscreen = LoadTexture("sprites/incrimscreen.png");
@@ -77,6 +123,61 @@ void incrim (bool &playMusic) {
         }
         BeginDrawing();
         DrawTexture(incrimscreen, 0, 0, WHITE);
+        if (IsKeyDown(KEY_Q)) {
+            if (IsMusicStreamPlaying(incrimmusic)) {
+                StopMusicStream(incrimmusic);
+            }
+            EndDrawing();
+            winscreen(playMusic);
+            BeginDrawing();
+            if (playMusic) {
+                PlayMusicStream(incrimmusic);
+            }
+        }
+        else if (IsKeyDown(KEY_B)) {
+            if (IsMusicStreamPlaying(incrimmusic)) {
+                StopMusicStream(incrimmusic);
+            }
+            EndDrawing();
+            losescreen(playMusic);
+            BeginDrawing();
+            if (playMusic) {
+                PlayMusicStream(incrimmusic);
+            }
+        }
+        else if (IsKeyDown(KEY_C)) {
+            if (IsMusicStreamPlaying(incrimmusic)) {
+                StopMusicStream(incrimmusic);
+            }
+            EndDrawing();
+            losescreen(playMusic);
+            BeginDrawing();
+            if (playMusic) {
+                PlayMusicStream(incrimmusic);
+            }    
+        }
+        else if (IsKeyDown(KEY_S)) {
+            if (IsMusicStreamPlaying(incrimmusic)) {
+                StopMusicStream(incrimmusic);
+            }
+            EndDrawing();
+            losescreen(playMusic);
+            BeginDrawing();
+            if (playMusic) {
+                PlayMusicStream(incrimmusic);
+            }
+        }
+        else if (IsKeyDown(KEY_G)) {
+            if (IsMusicStreamPlaying(incrimmusic)) {
+                StopMusicStream(incrimmusic);
+            }
+            EndDrawing();
+            losescreen(playMusic);
+            BeginDrawing();
+            if (playMusic) {
+                PlayMusicStream(incrimmusic);
+            }
+        }
         EndDrawing();
         if (IsKeyPressed(KEY_ESCAPE)) {
             //Note: Its better if the main game file handles all game music rather than passing it onto the function which causes audio glitches.

@@ -12,3 +12,7 @@ void room4 (bool playMusic);
 void interrogation (bool &playMusic);
 
 void incrim (bool &playMusic);
+
+void winscreen (bool &playMusic);
+
+void losescreen (bool &playMusic);
