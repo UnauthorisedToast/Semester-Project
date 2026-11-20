@@ -38,10 +38,11 @@ void menu (bool &playMusic) {
                 ClearBackground(RED);
                 DrawText("Controls", 0, 0, 40, WHITE);
                 DrawText("WASD for movement", 0, 60, 25, WHITE);
-                DrawText("E for interaction", 0, 90, 25, WHITE);
-                DrawText("I to leave a room", 0, 120, 25, WHITE);
-                DrawText("Esc for menu", 0, 150, 25, WHITE);
-                DrawText("H to go back", 0, 180, 25, WHITE);
+                DrawText("Press E to interact with stuff/enter rooms", 0, 90, 25, WHITE);
+                DrawText("Press I to exit rooms/interrogations", 0, 120, 25, WHITE);
+                DrawText("Press K to guess killer", 0, 150, 25, WHITE);
+                DrawText("Press L to leave interrogation/guess killer later", 0, 180, 25, WHITE);
+                DrawText("Press H to go back to menu", 0, 210, 25, WHITE);
                 EndDrawing();
             }
             BeginDrawing();
