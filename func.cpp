@@ -210,6 +210,12 @@ void room2 (bool playMusic, int &questionsLeft) {
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
+    interactable cloth;
+    cloth.xcoord = 260;
+    cloth.ycoord = 180;
+    cloth.path = "sprites/pieceofcloth.png";
+    cloth.clue = "A piece of torn cloth from someone's garment";
+
     interactable rug;
     rug.xcoord = 800;
     rug.ycoord = 240;
@@ -273,6 +279,7 @@ void room2 (bool playMusic, int &questionsLeft) {
         }
         door.draw();
         butler.draw();
+        cloth.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         
         if (servantclue.inRange(shuraimxcoord, shuraimycoord, 100) && rug.searched) {
@@ -283,6 +290,9 @@ void room2 (bool playMusic, int &questionsLeft) {
         }
         if (rug.inRange(shuraimxcoord, shuraimycoord, 100) && !rug.searched) {
             rug.dispsearch();
+        }
+        if (cloth.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            cloth.dispsearch();
         }
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
@@ -302,6 +312,9 @@ void room2 (bool playMusic, int &questionsLeft) {
             }
             if (rug.inRange(shuraimxcoord, shuraimycoord, 100) && !rug.searched) {
                 rug.searched = 1;
+            }
+            if (cloth.inRange(shuraimxcoord, shuraimycoord, 100)) {
+                cloth.giveClue();
             }
         }
         EndDrawing();
