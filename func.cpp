@@ -201,10 +201,16 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     //Object Testing
     interactable servantclue;
     servantclue.id = 2;
-    servantclue.xcoord = 820;
-    servantclue.ycoord = 210;
+    servantclue.xcoord = 520;
+    servantclue.ycoord = 410;
     servantclue.path = "sprites/paperonfloor.png";
     servantclue.clue = "The madame requested his highness' bedtime nightly";
+
+    interactable kingsl;
+    kingsl.xcoord = 350;
+    kingsl.ycoord = 320;
+    kingsl.path = "sprites/paperonfloor.png";
+    kingsl.clue = "A love letter from the king to... not the madame...";
 
     interactable door;
     door.id = 4;
@@ -213,16 +219,25 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     door.path = "sprites/door.png";
 
     interactable cloth;
-    cloth.xcoord = 260;
-    cloth.ycoord = 180;
+    cloth.xcoord = 200;
+    cloth.ycoord = 160;
     cloth.path = "sprites/pieceofcloth.png";
     cloth.clue = "A piece of torn cloth from someone's garment";
 
     interactable rug;
-    rug.xcoord = 800;
-    rug.ycoord = 240;
+    rug.xcoord = 500;
+    rug.ycoord = 270;
     rug.path = "sprites/kingroomrug.png";
-    rug.clue = "You find a note detailing the king's sleeping patterns";
+
+    interactable books;
+    books.xcoord = 100;
+    books.ycoord = 100;
+    books.path = "sprites/bookshelf.png";
+
+    interactable bed;
+    bed.xcoord = 100;
+    bed.ycoord = 300;
+    bed.path = "sprites/bed.png";
 
     interactable butler;
     butler.name = " Butler";
@@ -236,7 +251,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     butler.ans5 = "The chef has been leaving in the afternoon lately.";
 
     //Initialising and importing music and textures n stuff idk
-    Texture2D backdrop = LoadTexture("sprites/bg.png");
+    Texture2D backdrop = LoadTexture("sprites/woodfloor.png");
     Music gamemusic = LoadMusicStream("music/gamemusic.wav");
     PlayMusicStream(gamemusic);
     Texture2D tv = LoadTexture("sprites/tv.png");
@@ -274,14 +289,25 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
             } 
         }
         BeginDrawing();
+        //Dont draw anything here (backdrop goes first dude i found out the hard way by messing around for like too long dude)
         DrawTexture(backdrop, 0, 0, WHITE);
+        for (int i=0; 100 + (i*200) < 1490; i++) {
+            DrawTexture(LoadTexture(books.path), 100 + (i*200), 100, WHITE);
+        }
         rug.draw();
         if (rug.searched) {
             servantclue.draw();
         }
         door.draw();
         butler.draw();
-        cloth.draw();
+        bed.draw();
+        if (bed.searched) {
+            kingsl.draw();
+        }
+        if (books.searched) {
+            cloth.draw();
+        }
+        //Draw shuraim on top of everything so it doesnt look like hes walking under stuff...
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         
         if (servantclue.inRange(shuraimxcoord, shuraimycoord, 100) && rug.searched) {
@@ -293,8 +319,17 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
         if (rug.inRange(shuraimxcoord, shuraimycoord, 100) && !rug.searched) {
             rug.dispsearch();
         }
-        if (cloth.inRange(shuraimxcoord, shuraimycoord, 100)) {
+        if (cloth.inRange(shuraimxcoord, shuraimycoord, 100) && books.searched) {
             cloth.dispsearch();
+        }
+        if (books.inRange(shuraimxcoord, shuraimycoord, 100) && !books.searched) {
+            books.dispsearch();
+        }
+        if (kingsl.inRange(shuraimxcoord, shuraimycoord, 200) && bed.searched) {
+            kingsl.displayInter();
+        }
+        if (bed.inRange(shuraimxcoord, shuraimycoord, 400) && !bed.searched) {
+            bed.dispsearch();
         }
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
@@ -315,8 +350,17 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
             if (rug.inRange(shuraimxcoord, shuraimycoord, 100) && !rug.searched) {
                 rug.searched = 1;
             }
-            if (cloth.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            if (books.inRange(shuraimxcoord, shuraimycoord, 100) && !books.searched) {
+                books.searched = 1;
+            } 
+            if (cloth.inRange(shuraimxcoord, shuraimycoord, 100) && books.searched) {
                 cloth.giveClue(points);
+            }
+            if (bed.inRange(shuraimxcoord, shuraimycoord, 400) && !bed.searched) {
+                bed.searched = 1;
+            }
+            if (kingsl.inRange(shuraimxcoord, shuraimycoord, 200) && bed.searched) {
+                kingsl.giveClue(points);
             }
         }
         EndDrawing();
