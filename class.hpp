@@ -24,9 +24,9 @@ class interactable {
 
         bool inRange (int shuraimx, int shuraimy, int range); 
         void draw();
-        void giveClue();
+        void giveClue(int &points);
         void displayInter();
-        void interrogation(bool &playMusic, int &questionsLeft);
+        void interrogation(bool &playMusic, int &questionsLeft, int &points);
         void dispname();
         void dispsearch();
     };

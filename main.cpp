@@ -15,6 +15,7 @@ int main () {
     InitWindow(1600, 800, "Shuraim Homeless");
     InitAudioDevice();
     SetExitKey(KEY_NULL);
+    int points = 0;
     //default coords
     int shuraimxcoord = 800;
     int shuraimycoord = 400;
@@ -126,14 +127,14 @@ int main () {
         //Interactables and stuff yk type shi
         if (IsKeyDown(KEY_E)) {
             if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
-                obj1.giveClue();
+                obj1.giveClue(points);
             }
             if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
                 EndDrawing();
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                room2(playMusic, questionsLeft);
+                room2(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -144,7 +145,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                room3(playMusic, questionsLeft);
+                room3(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -155,7 +156,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                guard.interrogation(playMusic, questionsLeft);
+                guard.interrogation(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -166,7 +167,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                chef.interrogation(playMusic, questionsLeft);
+                chef.interrogation(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -177,7 +178,7 @@ int main () {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            incrim(playMusic);
+            incrim(playMusic, points);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             } 

@@ -67,7 +67,7 @@ void menu (bool &playMusic) {
     StopMusicStream(menumusic);
 }
 
-void winscreen (bool &playMusic) {
+void winscreen (bool &playMusic, int &points) {
     Texture2D tv = LoadTexture("sprites/tv.png");
     Music winmusic = LoadMusicStream("music/winmusic.mp3");
     if (playMusic) {
@@ -85,12 +85,14 @@ void winscreen (bool &playMusic) {
         int textposx = (1600 - textlen) / 2;
         int textposy = (800 - 40) / 2;
         DrawText("You win!", textposx, textposy, 40, RED);
+        DrawText("Points: ", 910, 650, 20, RED);
+        DrawText(TextFormat("%i", points), 910, 690, 20, RED);
         EndDrawing();
     }
     StopMusicStream(winmusic);
 }
 
-void losescreen (bool &playMusic) {
+void losescreen (bool &playMusic, int &points) {
     Texture2D tv = LoadTexture("sprites/tv.png");
     Music losemusic = LoadMusicStream("music/losemusic.mp3");
     if (playMusic) {
@@ -113,7 +115,7 @@ void losescreen (bool &playMusic) {
     StopMusicStream(losemusic);
 }
 
-void incrim (bool &playMusic) {
+void incrim (bool &playMusic, int &points) {
     Music incrimmusic = LoadMusicStream("music/incrimmusic.mp3");
     Texture2D incrimscreen = LoadTexture("sprites/incrimscreen.png");
     if (playMusic) {
@@ -130,7 +132,7 @@ void incrim (bool &playMusic) {
                 StopMusicStream(incrimmusic);
             }
             EndDrawing();
-            winscreen(playMusic);
+            winscreen(playMusic, points);
             BeginDrawing();
             if (playMusic) {
                 PlayMusicStream(incrimmusic);
@@ -141,7 +143,7 @@ void incrim (bool &playMusic) {
                 StopMusicStream(incrimmusic);
             }
             EndDrawing();
-            losescreen(playMusic);
+            losescreen(playMusic, points);
             BeginDrawing();
             if (playMusic) {
                 PlayMusicStream(incrimmusic);
@@ -152,7 +154,7 @@ void incrim (bool &playMusic) {
                 StopMusicStream(incrimmusic);
             }
             EndDrawing();
-            losescreen(playMusic);
+            losescreen(playMusic, points);
             BeginDrawing();
             if (playMusic) {
                 PlayMusicStream(incrimmusic);
@@ -163,7 +165,7 @@ void incrim (bool &playMusic) {
                 StopMusicStream(incrimmusic);
             }
             EndDrawing();
-            losescreen(playMusic);
+            losescreen(playMusic, points);
             BeginDrawing();
             if (playMusic) {
                 PlayMusicStream(incrimmusic);
@@ -174,7 +176,7 @@ void incrim (bool &playMusic) {
                 StopMusicStream(incrimmusic);
             }
             EndDrawing();
-            losescreen(playMusic);
+            losescreen(playMusic, points);
             BeginDrawing();
             if (playMusic) {
                 PlayMusicStream(incrimmusic);
@@ -195,7 +197,7 @@ void incrim (bool &playMusic) {
     StopMusicStream(incrimmusic);
 }
 
-void room2 (bool playMusic, int &questionsLeft) {
+void room2 (bool playMusic, int &questionsLeft, int &points) {
     //Object Testing
     interactable servantclue;
     servantclue.id = 2;
@@ -266,7 +268,7 @@ void room2 (bool playMusic, int &questionsLeft) {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            incrim(playMusic);
+            incrim(playMusic, points);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             } 
@@ -297,14 +299,14 @@ void room2 (bool playMusic, int &questionsLeft) {
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
             if ((servantclue.inRange(shuraimxcoord, shuraimycoord, 100)) && (rug.searched)) {
-                servantclue.giveClue();
+                servantclue.giveClue(points);
             }
             if (butler.inRange(shuraimxcoord, shuraimycoord, 100)) {
                 EndDrawing();
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                butler.interrogation(playMusic, questionsLeft);
+                butler.interrogation(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -314,7 +316,7 @@ void room2 (bool playMusic, int &questionsLeft) {
                 rug.searched = 1;
             }
             if (cloth.inRange(shuraimxcoord, shuraimycoord, 100)) {
-                cloth.giveClue();
+                cloth.giveClue(points);
             }
         }
         EndDrawing();
@@ -335,7 +337,7 @@ void room2 (bool playMusic, int &questionsLeft) {
 
 }
 
-void room3 (bool playMusic, int &questionsLeft) {
+void room3 (bool playMusic, int &questionsLeft, int &points) {
     //Object Testing
     interactable paper2;
     paper2.xcoord = 1200;
@@ -404,7 +406,7 @@ void room3 (bool playMusic, int &questionsLeft) {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            incrim(playMusic);
+            incrim(playMusic, points);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             } 
@@ -429,14 +431,14 @@ void room3 (bool playMusic, int &questionsLeft) {
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
             if ((paper2.inRange(shuraimxcoord, shuraimycoord, 100))) {
-                paper2.giveClue();
+                paper2.giveClue(points);
             }
             if (queen.inRange(shuraimxcoord, shuraimycoord, 100)) {
                 EndDrawing();
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                queen.interrogation(playMusic, questionsLeft);
+                queen.interrogation(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -447,7 +449,7 @@ void room3 (bool playMusic, int &questionsLeft) {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                servant.interrogation(playMusic, questionsLeft);
+                servant.interrogation(playMusic, questionsLeft, points);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }

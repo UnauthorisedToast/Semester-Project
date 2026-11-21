@@ -26,7 +26,11 @@ void interactable::dispsearch() {
     DrawText("Press E to search", xcoord, ycoord - 10, 25, RED);
 }
 
-void interactable::giveClue() {
+void interactable::giveClue(int &points) {
+    if (!searched) {
+        searched = 1;
+        points = points + 100;
+    }
     DrawText(clue, 910, 650, 15, RED);
 }
 
@@ -34,7 +38,7 @@ void interactable::displayInter() {
     DrawText("Hold E to Interact", xcoord, ycoord - 40, 25, RED);
 }
 
-void interactable::interrogation (bool &playMusic, int &questionsLeft) {
+void interactable::interrogation (bool &playMusic, int &questionsLeft, int &points) {
     Texture2D backdrop = LoadTexture("sprites/bg.png");
     Texture2D tv = LoadTexture("sprites/tv.png");
     Music intemusic = LoadMusicStream("music/interrogationmusic.mp3");
@@ -68,26 +72,31 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft) {
             if ((IsKeyPressed(KEY_ONE)) && (!q[0])) {
                 q[0] = 1;
                 isquestionasked = 1;
+                points = points + 5;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_TWO) && (!q[1])) {
                 q[1] = 1;
                 isquestionasked = 1;
+                points = points + 10;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_THREE) && (!q[2])) {
                 q[2] = 1;
                 isquestionasked = 1;
+                points = points + 15;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_FOUR) && (!q[3])) {
                 q[3] = 1;
                 isquestionasked = 1;
+                points = points + 20;
                 questionsLeft--;
             }
             if (IsKeyPressed(KEY_FIVE) && (!q[4])) {
                 q[4] = 1;
                 isquestionasked = 1;
+                points = points + 25;
                 questionsLeft--;
             }
 
