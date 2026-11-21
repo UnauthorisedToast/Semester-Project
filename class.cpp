@@ -19,15 +19,15 @@ void interactable::draw() {
 }
 
 void interactable::dispname() {
-    DrawText(name, xcoord + 40, ycoord - 10, 25, RED);
+    DrawText(name, xcoord + 40, ycoord - 10, 25, BLUE);
 }
 
 void interactable::dispsearch() {
     Texture obj = LoadTexture(path);
     if ((ycoord - 35) > 100) {
-        DrawText("Press E to search", xcoord, ycoord - 10, 25, RED);
+        DrawText("Press E to search", xcoord, ycoord - 10, 25, BLUE);
     }
-    else (DrawText("Press E to search", xcoord, ycoord + obj.height + 20, 25, RED));
+    else (DrawText("Press E to search", xcoord, ycoord + obj.height + 20, 25, BLUE));
 }
 
 void interactable::giveClue(int &points) {
@@ -39,7 +39,7 @@ void interactable::giveClue(int &points) {
 }
 
 void interactable::displayInter() {
-    DrawText("Hold E to Interact", xcoord, ycoord - 40, 25, RED);
+    DrawText("Hold E to Interact", xcoord, ycoord - 40, 25, BLUE);
 }
 
 void interactable::interrogation (bool &playMusic, int &questionsLeft, int &points) {
@@ -108,7 +108,7 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft, int &poin
             for (int i=0; i<5; i++) {
                 if (q[i]) {
                     liney = ((i+4)*30) + 32;
-                    DrawLine(linestartx, liney, lineendx, liney, RED);
+                    DrawLine(linestartx, liney, lineendx, liney, WHITE);
                 }
             }
         }
