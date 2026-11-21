@@ -8,7 +8,7 @@
 using namespace std;
 
 //DEV NOTE CURRENT
-//Test music for room 2 (pase play and mute stuff yk)
+//fix ram issue D:
 
 int main () {
     SetTargetFPS(60);
