@@ -197,12 +197,12 @@ void incrim (bool &playMusic) {
 
 void room2 (bool playMusic, int &questionsLeft) {
     //Object Testing
-    interactable obj2;
-    obj2.id = 2;
-    obj2.xcoord = 800;
-    obj2.ycoord = 400;
-    obj2.path = "sprites/paperonfloor.png";
-    obj2.clue = "Clue 2";
+    interactable servantclue;
+    servantclue.id = 2;
+    servantclue.xcoord = 820;
+    servantclue.ycoord = 210;
+    servantclue.path = "sprites/paperonfloor.png";
+    servantclue.clue = "The madame requested his highness' bedtime nightly";
 
     interactable door;
     door.id = 4;
@@ -210,7 +210,14 @@ void room2 (bool playMusic, int &questionsLeft) {
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
+    interactable rug;
+    rug.xcoord = 800;
+    rug.ycoord = 240;
+    rug.path = "sprites/kingroomrug.png";
+    rug.clue = "You find a note detailing the king's sleeping patterns";
+
     interactable butler;
+    butler.name = " Butler";
     butler.xcoord = 1200;
     butler.ycoord = 200;
     butler.path = "sprites/sh.png";
@@ -260,18 +267,27 @@ void room2 (bool playMusic, int &questionsLeft) {
         }
         BeginDrawing();
         DrawTexture(backdrop, 0, 0, WHITE);
-        obj2.draw();
+        rug.draw();
+        if (rug.searched) {
+            servantclue.draw();
+        }
         door.draw();
         butler.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         
-        if (obj2.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            obj2.displayInter();
+        if (servantclue.inRange(shuraimxcoord, shuraimycoord, 100) && rug.searched) {
+            servantclue.displayInter();
+        }
+        if (butler.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            butler.dispname();
+        }
+        if (rug.inRange(shuraimxcoord, shuraimycoord, 100) && !rug.searched) {
+            rug.dispsearch();
         }
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {
-            if ((obj2.inRange(shuraimxcoord, shuraimycoord, 100))) {
-                obj2.giveClue();
+            if ((servantclue.inRange(shuraimxcoord, shuraimycoord, 100)) && (rug.searched)) {
+                servantclue.giveClue();
             }
             if (butler.inRange(shuraimxcoord, shuraimycoord, 100)) {
                 EndDrawing();
@@ -283,6 +299,9 @@ void room2 (bool playMusic, int &questionsLeft) {
                     PlayMusicStream(gamemusic);
                 }
                 BeginDrawing();
+            }
+            if (rug.inRange(shuraimxcoord, shuraimycoord, 100) && !rug.searched) {
+                rug.searched = 1;
             }
         }
         EndDrawing();
@@ -318,6 +337,7 @@ void room3 (bool playMusic, int &questionsLeft) {
     door.path = "sprites/door.png";
 
     interactable queen;
+    queen.name = "  Queen";
     queen.xcoord = 400;
     queen.ycoord = 200;
     queen.path = "sprites/sh.png";
@@ -328,6 +348,7 @@ void room3 (bool playMusic, int &questionsLeft) {
     queen.ans5 = "Are you going to hold the QUEEN in custody for long?";
 
     interactable servant;
+    servant.name = "Servant";
     servant.xcoord = 1200;
     servant.ycoord = 200;
     servant.path = "sprites/sh.png";
@@ -385,6 +406,12 @@ void room3 (bool playMusic, int &questionsLeft) {
         
         if (paper2.inRange(shuraimxcoord, shuraimycoord, 100)) {
             paper2.displayInter();
+        }
+        if (servant.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            servant.dispname();
+        }
+        if (queen.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            queen.dispname();
         }
         DrawTexture(tv, 0, 0, WHITE);
         if (IsKeyDown(KEY_E)) {

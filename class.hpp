@@ -8,9 +8,11 @@ class interactable {
         int id;
         int xcoord;
         int ycoord;
+        const char* name;
         const char* path;
         const char* clue;
         bool q[5] = {0, 0, 0, 0, 0};
+        bool searched = 0;
         string ans[5] = {""};
         const char* ans1;
         const char* ans2;
@@ -25,4 +27,6 @@ class interactable {
         void giveClue();
         void displayInter();
         void interrogation(bool &playMusic, int &questionsLeft);
-};
+        void dispname();
+        void dispsearch();
+    };

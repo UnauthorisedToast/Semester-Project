@@ -18,12 +18,20 @@ void interactable::draw() {
     DrawTexture(LoadTexture(path), xcoord, ycoord, WHITE);
 }
 
+void interactable::dispname() {
+    DrawText(name, xcoord + 40, ycoord - 10, 25, RED);
+}
+
+void interactable::dispsearch() {
+    DrawText("Press E to search", xcoord, ycoord - 10, 25, RED);
+}
+
 void interactable::giveClue() {
     DrawText(clue, 910, 650, 15, RED);
 }
 
 void interactable::displayInter() {
-    DrawText("Hold E to Interact", xcoord, ycoord - 30, 25, RED);
+    DrawText("Hold E to Interact", xcoord, ycoord - 40, 25, RED);
 }
 
 void interactable::interrogation (bool &playMusic, int &questionsLeft) {

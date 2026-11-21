@@ -27,9 +27,9 @@ int main () {
     obj1.ycoord = 200;
     obj1.path = "sprites/paperonfloor.png";
     obj1.clue = "The servants have been acting quite suspiciously.";
-
     
     interactable guard;
+    guard.name = "  Guard";
     guard.xcoord = 800;
     guard.ycoord = 400;
     guard.path = "sprites/sh.png";
@@ -40,6 +40,7 @@ int main () {
     guard.ans5 = "Not really to be honest.";
 
     interactable chef;
+    chef.name = "   Chef";
     chef.xcoord = 400;
     chef.ycoord = 200;
     chef.path = "sprites/sh.png";
@@ -108,6 +109,12 @@ int main () {
         
         if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
             obj1.displayInter();
+        }
+        if (chef.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            chef.dispname();
+        }
+        if (guard.inRange(shuraimxcoord, shuraimycoord, 100)) {
+            guard.dispname();
         }
         obj1.draw();
         door.draw();
