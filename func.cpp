@@ -199,47 +199,47 @@ void incrim (bool &playMusic, int &points) {
 
 void room2 (bool playMusic, int &questionsLeft, int &points) {
     //Object Testing
-    interactable servantclue;
+    static interactable servantclue;
     servantclue.id = 2;
     servantclue.xcoord = 520;
     servantclue.ycoord = 410;
     servantclue.path = "sprites/paperonfloor.png";
     servantclue.clue = "The madame requested his highness' bedtime nightly";
 
-    interactable kingsl;
+    static interactable kingsl;
     kingsl.xcoord = 350;
     kingsl.ycoord = 320;
     kingsl.path = "sprites/paperonfloor.png";
     kingsl.clue = "A love letter from the king to... not the madame...";
 
-    interactable door;
+    static interactable door;
     door.id = 4;
     door.xcoord = 1460;
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
-    interactable cloth;
+    static interactable cloth;
     cloth.xcoord = 200;
     cloth.ycoord = 160;
     cloth.path = "sprites/pieceofcloth.png";
     cloth.clue = "A piece of torn cloth from someone's garment";
 
-    interactable rug;
+    static interactable rug;
     rug.xcoord = 500;
     rug.ycoord = 270;
     rug.path = "sprites/kingroomrug.png";
 
-    interactable books;
+    static interactable books;
     books.xcoord = 100;
     books.ycoord = 100;
     books.path = "sprites/bookshelf.png";
 
-    interactable bed;
+    static interactable bed;
     bed.xcoord = 100;
     bed.ycoord = 300;
     bed.path = "sprites/bed.png";
 
-    interactable butler;
+    static interactable butler;
     butler.name = " Butler";
     butler.xcoord = 1200;
     butler.ycoord = 200;
@@ -383,19 +383,19 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
 
 void room3 (bool playMusic, int &questionsLeft, int &points) {
     //Object Testing
-    interactable paper2;
+    static interactable paper2;
     paper2.xcoord = 1200;
     paper2.ycoord = 300;
     paper2.path = "sprites/paperonfloor.png";
     paper2.clue = "Clue 3";
 
-    interactable door;
+    static interactable door;
     door.id = 5;
     door.xcoord = 100;
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
-    interactable queen;
+    static interactable queen;
     queen.name = "  Queen";
     queen.xcoord = 400;
     queen.ycoord = 200;
@@ -406,7 +406,7 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
     queen.ans4 = "Nervous...? What reason do I have to be nervous...";
     queen.ans5 = "Are you going to hold the QUEEN in custody for long?";
 
-    interactable servant;
+    static interactable servant;
     servant.name = "Servant";
     servant.xcoord = 1200;
     servant.ycoord = 200;

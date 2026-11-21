@@ -22,14 +22,14 @@ int main () {
     int speed = 5;
     int questionsLeft = 15;
 
-    interactable obj1;
+    static interactable obj1;
     obj1.id = 1;
     obj1.xcoord = 800;
     obj1.ycoord = 200;
     obj1.path = "sprites/paperonfloor.png";
     obj1.clue = "The servants have been acting quite suspiciously.";
     
-    interactable guard;
+    static interactable guard;
     guard.name = "  Guard";
     guard.xcoord = 800;
     guard.ycoord = 400;
@@ -40,7 +40,7 @@ int main () {
     guard.ans4 = "Nervous? Me? I'm trained in a bajillion martial arts";
     guard.ans5 = "Not really to be honest.";
 
-    interactable chef;
+    static interactable chef;
     chef.name = "   Chef";
     chef.xcoord = 400;
     chef.ycoord = 200;
@@ -51,13 +51,13 @@ int main () {
     chef.ans4 = "I've got food on the stove and you're holding me up.";
     chef.ans5 = "Nup.";
 
-    interactable door;
+    static interactable door;
     door.id = 3;
     door.xcoord = 100;
     door.ycoord = 320;
     door.path = "sprites/door.png";
 
-    interactable door2;
+    static interactable door2;
     door2.xcoord = 1460;
     door2.ycoord = 320;
     door2.path = "sprites/door2.png";
@@ -124,7 +124,7 @@ int main () {
         chef.draw();
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         DrawTexture(tv, 0, 0, WHITE);
-        //Interactables and stuff yk type shi
+        //static Interactables and stuff yk type shi
         if (IsKeyDown(KEY_E)) {
             if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
                 obj1.giveClue(points);
