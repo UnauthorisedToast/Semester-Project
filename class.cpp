@@ -19,11 +19,8 @@ void interactable::draw() {
 }
 
 void interactable::dispname() {
-Texture obj = LoadTexture(path);
-    if ((ycoord - 35) > 100) {
-        DrawText("Press E to interact", xcoord, ycoord - 10, 25, RED);
-    }
-    else (DrawText("Press E to interact", xcoord, ycoord + obj.height + 20, 25, RED));}
+    DrawText(name, xcoord + 40, ycoord - 10, 25, RED);
+}
 
 void interactable::dispsearch() {
     Texture obj = LoadTexture(path);
