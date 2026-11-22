@@ -43,6 +43,7 @@ void interactable::displayInter() {
 }
 
 void interactable::interrogation (bool &playMusic, int &questionsLeft, int &points) {
+    SetTargetFPS(60);
     Texture2D backdrop = LoadTexture("sprites/bg.png");
     Texture2D tv = LoadTexture("sprites/tv.png");
     Music intemusic = LoadMusicStream("music/interrogationmusic.mp3");

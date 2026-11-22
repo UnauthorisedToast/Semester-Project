@@ -6,6 +6,7 @@ using namespace std;
 
 
 void menu (bool &playMusic) {
+    SetTargetFPS(60);
     Music menumusic = LoadMusicStream("music/menumusic.wav");
     PlayMusicStream(menumusic);
     if (!playMusic) {
@@ -68,6 +69,7 @@ void menu (bool &playMusic) {
 }
 
 void winscreen (bool &playMusic, int &points) {
+    SetTargetFPS(60);
     Texture2D tv = LoadTexture("sprites/tv.png");
     Music winmusic = LoadMusicStream("music/winmusic.mp3");
     if (playMusic) {
@@ -116,6 +118,7 @@ void losescreen (bool &playMusic, int &points) {
 }
 
 void incrim (bool &playMusic, int &points) {
+    SetTargetFPS(60);
     Music incrimmusic = LoadMusicStream("music/incrimmusic.mp3");
     Texture2D incrimscreen = LoadTexture("sprites/incrimscreen.png");
     if (playMusic) {
@@ -198,6 +201,7 @@ void incrim (bool &playMusic, int &points) {
 }
 
 void room2 (bool playMusic, int &questionsLeft, int &points) {
+    SetTargetFPS(60);
     //Object Testing
     static interactable servantclue;
     servantclue.id = 2;
@@ -233,6 +237,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     books.xcoord = 100;
     books.ycoord = 100;
     books.path = "sprites/bookshelf.png";
+    Texture2D booksh = LoadTexture(books.path);
 
     static interactable bed;
     bed.xcoord = 100;
@@ -292,7 +297,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
         //Dont draw anything here (backdrop goes first dude i found out the hard way by messing around for like too long dude)
         DrawTexture(backdrop, 0, 0, WHITE);
         for (int i=0; 100 + (i*200) < 1490; i++) {
-            DrawTexture(LoadTexture(books.path), 100 + (i*200), 100, WHITE);
+            DrawTexture(booksh, 100 + (i*200), 100, WHITE);
         }
         rug.draw();
         if (rug.searched) {
@@ -382,6 +387,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
 }
 
 void room3 (bool playMusic, int &questionsLeft, int &points) {
+    SetTargetFPS(60);
     //Object Testing
     static interactable paper2;
     paper2.xcoord = 1200;
