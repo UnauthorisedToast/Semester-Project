@@ -14,10 +14,6 @@ bool interactable::inRange(int shuraimx, int shuraimy, int range = 100) {
     }
 }
 
-void interactable::draw() {
-    DrawTexture(LoadTexture(path), xcoord, ycoord, WHITE);
-}
-
 void interactable::dispname() {
     DrawText(name, xcoord + 40, ycoord - 10, 25, BLUE);
 }

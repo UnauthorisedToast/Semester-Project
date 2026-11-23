@@ -26,14 +26,14 @@ int main () {
     obj1.id = 1;
     obj1.xcoord = 800;
     obj1.ycoord = 200;
-    obj1.path = "sprites/paperonfloor.png";
+    Texture2D obj1d = LoadTexture("sprites/paperonfloor.png");
     obj1.clue = "The servants have been acting quite suspiciously.";
     
     static interactable guard;
     guard.name = "  Guard";
     guard.xcoord = 800;
     guard.ycoord = 400;
-    guard.path = "sprites/sh.png";
+    Texture2D guardd = LoadTexture("sprites/sh.png");
     guard.ans1 = "Right outside the door.";
     guard.ans2 = "Standing guard. Watched the butler leave.";
     guard.ans3 = "Amazing. Once made a mistake, he didn't even say nun.";
@@ -45,6 +45,7 @@ int main () {
     chef.xcoord = 400;
     chef.ycoord = 200;
     chef.path = "sprites/sh.png";
+    Texture2D chefd = LoadTexture("sprites/sh.png");
     chef.ans1 = "In my quarters.";
     chef.ans2 = "Thinking what to make the next day.";
     chef.ans3 = "He was a good man. Its a shame what happened.";
@@ -56,11 +57,14 @@ int main () {
     door.xcoord = 100;
     door.ycoord = 320;
     door.path = "sprites/door.png";
+    Texture2D doord = LoadTexture("sprites/door.png");
 
     static interactable door2;
     door2.xcoord = 1460;
     door2.ycoord = 320;
     door2.path = "sprites/door2.png";
+    Texture2D door2d = LoadTexture("sprites/door.png");
+
 
     //asset list
     //visual
@@ -117,11 +121,11 @@ int main () {
         if (guard.inRange(shuraimxcoord, shuraimycoord, 100)) {
             guard.dispname();
         }
-        obj1.draw();
-        door.draw();
-        door2.draw();
-        guard.draw();
-        chef.draw();
+        DrawTexture(obj1d, obj1.xcoord, obj1.ycoord, WHITE);
+        DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
+        DrawTexture(door2d, door2.xcoord, door2.ycoord, WHITE);
+        DrawTexture(guardd, guard.xcoord, guard.ycoord, WHITE);
+        DrawTexture(chefd, chef.xcoord, chef.ycoord, WHITE);
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         DrawTexture(tv, 0, 0, WHITE);
         //static Interactables and stuff yk type shi

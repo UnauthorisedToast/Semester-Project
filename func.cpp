@@ -207,48 +207,49 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     kingsnote.id = 2;
     kingsnote.xcoord = 520;
     kingsnote.ycoord = 410;
-    kingsnote.path = "sprites/paperonfloor.png";
+    Texture2D kingsnoted = LoadTexture("sprites/paperonfloor.png");
     kingsnote.clue = "The queen's cold shoulder saddens me. -King";
+
 
     static interactable kingsl;
     kingsl.xcoord = 350;
     kingsl.ycoord = 320;
-    kingsl.path = "sprites/paperonfloor.png";
+    Texture2D kingsld = LoadTexture("sprites/paperonfloor.png");
     kingsl.clue = "A love letter from the king to... not the madame...";
 
     static interactable door;
     door.id = 4;
     door.xcoord = 1460;
     door.ycoord = 320;
-    door.path = "sprites/door.png";
+    Texture2D doord = LoadTexture("sprites/door.png");
 
     static interactable cloth;
     cloth.xcoord = 200;
     cloth.ycoord = 160;
-    cloth.path = "sprites/pieceofcloth.png";
+    Texture2D clothd = LoadTexture("sprites/pieceofcloth.png");
     cloth.clue = "A piece of torn cloth from someone's garment";
 
     static interactable rug;
     rug.xcoord = 500;
     rug.ycoord = 270;
-    rug.path = "sprites/kingroomrug.png";
+    Texture2D rugd = LoadTexture("sprites/kingroomrug.png");
 
     static interactable books;
     books.xcoord = 100;
     books.ycoord = 100;
-    books.path = "sprites/bookshelf.png";
+    Texture2D booksd = LoadTexture("sprites/bookshelf.png");
     Texture2D booksh = LoadTexture(books.path);
 
     static interactable bed;
     bed.xcoord = 100;
     bed.ycoord = 300;
-    bed.path = "sprites/bed.png";
+    Texture2D bedd = LoadTexture("sprites/bed.png");
 
     static interactable butler;
     butler.name = " Butler";
     butler.xcoord = 1200;
     butler.ycoord = 200;
-    butler.path = "sprites/sh.png";
+    Texture2D butlerd = LoadTexture("sprites/sh.png");
     butler.ans1 = "I was in the lawn.";
     butler.ans2 = "I was about to leave the estate.";
     butler.ans3 = "He was amazing. The madame on the contrary...";
@@ -299,18 +300,18 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
         for (int i=0; 100 + (i*200) < 1490; i++) {
             DrawTexture(booksh, 100 + (i*200), 100, WHITE);
         }
-        rug.draw();
+        DrawTexture(rugd, rug.xcoord, rug.ycoord, WHITE);
         if (rug.searched) {
-            kingsnote.draw();
+            DrawTexture(kingsnoted, kingsnote.xcoord, kingsnote.ycoord, WHITE);
         }
-        door.draw();
-        butler.draw();
-        bed.draw();
+        DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
+        DrawTexture(butlerd, butler.xcoord, butler.ycoord, WHITE);
+        DrawTexture(bedd, bed.xcoord, bed.ycoord, WHITE);
         if (bed.searched) {
-            kingsl.draw();
+            DrawTexture(kingsld, kingsl.xcoord, kingsl.ycoord, WHITE);
         }
         if (books.searched) {
-            cloth.draw();
+            DrawTexture(clothd, cloth.xcoord, cloth.ycoord, WHITE);
         }
         //Draw shuraim on top of everything so it doesnt look like hes walking under stuff...
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
