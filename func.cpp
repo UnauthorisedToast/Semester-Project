@@ -8,6 +8,7 @@ using namespace std;
 void menu (bool &playMusic) {
     SetTargetFPS(60);
     Music menumusic = LoadMusicStream("music/menumusic.wav");
+    Texture2D menu = LoadTexture("sprites/menu.png");
     PlayMusicStream(menumusic);
     if (!playMusic) {
         PauseMusicStream(menumusic);
@@ -17,12 +18,12 @@ void menu (bool &playMusic) {
             UpdateMusicStream(menumusic);
         }
         BeginDrawing();
-        ClearBackground(RED);
-        DrawText("Main Menu", 0, 0, 40, WHITE);
-        DrawText("Press 1 to view controls", 0, 60, 25, WHITE);
-        DrawText("Press M to mute/unmute music", 0, 90, 25, WHITE);
-        DrawText("Press Enter to return to game", 0, 120, 25, WHITE);
-        DrawText("Press Esc to quit game", 0, 150, 25, WHITE);
+        DrawTexture(menu, 0, 0, WHITE);
+        DrawText("Main Menu", 140, 140, 40, WHITE);
+        DrawText("Press 1 to view controls", 140, 200, 25, WHITE);
+        DrawText("Press M to mute/unmute music", 140, 230, 25, WHITE);
+        DrawText("Press Enter to return to game", 140, 260, 25, WHITE);
+        DrawText("Press Esc to quit game", 140, 290, 25, WHITE);
 
 
         if (IsKeyPressed(KEY_ENTER)) {
@@ -37,14 +38,14 @@ void menu (bool &playMusic) {
                     UpdateMusicStream(menumusic);
                 }
                 BeginDrawing();
-                ClearBackground(RED);
-                DrawText("Controls", 0, 0, 40, WHITE);
-                DrawText("WASD for movement", 0, 60, 25, WHITE);
-                DrawText("Press E to interact with stuff/enter rooms", 0, 90, 25, WHITE);
-                DrawText("Press I to exit rooms/interrogations", 0, 120, 25, WHITE);
-                DrawText("Press K to guess killer", 0, 150, 25, WHITE);
-                DrawText("Press L to leave interrogation/guess killer later", 0, 180, 25, WHITE);
-                DrawText("Press H to go back to menu", 0, 210, 25, WHITE);
+                DrawTexture(menu, 0, 0, WHITE);
+                DrawText("Controls", 140, 140, 40, WHITE);
+                DrawText("WASD for movement", 140, 200, 25, WHITE);
+                DrawText("Press E to interact with stuff/enter rooms", 140, 230, 25, WHITE);
+                DrawText("Press I to exit rooms/interrogations", 140, 260, 25, WHITE);
+                DrawText("Press K to guess killer", 140, 290, 25, WHITE);
+                DrawText("Press L to leave interrogation/guess killer later", 140, 320, 25, WHITE);
+                DrawText("Press H to go back to menu", 140, 350, 25, WHITE);
                 EndDrawing();
             }
             BeginDrawing();
@@ -422,10 +423,9 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
 
     static interactable queen;
     queen.name = "  Queen";
-    queen.xcoord = 400;
-    queen.ycoord = 200;
-
-    Texture2D queend = LoadTexture("sprites/sh.png");
+    queen.xcoord = 530;
+    queen.ycoord = 300;
+    Texture2D queend = LoadTexture("sprites/queen.png");
     queen.ans1 = "I was in the kitchen.";
     queen.ans2 = "I was instructing the chef on what to make tomorrow.";
     queen.ans3 = "Lovely. We were married afterall.";
