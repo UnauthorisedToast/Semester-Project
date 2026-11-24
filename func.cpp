@@ -23,7 +23,7 @@ void menu (bool &playMusic, bool isplayed) {
         }
         BeginDrawing();
         DrawTexture(menu, 0, 0, WHITE);
-        DrawText("Main Menu", 140, 140, 40, WHITE);
+        DrawText("Shuraim Holmeless", 140, 140, 40, WHITE);
         DrawText("Press 1 to view controls", 140, 200, 25, WHITE);
         DrawText("Press M to mute/unmute music", 140, 230, 25, WHITE);
         DrawText("Press Enter to return to game", 140, 260, 25, WHITE);
