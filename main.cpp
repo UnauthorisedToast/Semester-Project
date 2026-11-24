@@ -21,13 +21,6 @@ int main () {
     int shuraimycoord = 400;
     int speed = 5;
     int questionsLeft = 15;
-
-    static interactable obj1;
-    obj1.id = 1;
-    obj1.xcoord = 800;
-    obj1.ycoord = 200;
-    Texture2D obj1d = LoadTexture("sprites/paperonfloor.png");
-    obj1.clue = "The servants have been acting quite suspiciously.";
     
     static interactable guard;
     guard.name = "  Guard";
@@ -110,16 +103,12 @@ int main () {
 
         DrawTexture(backdrop, 0, 0, WHITE);
         
-        if (obj1.inRange(shuraimxcoord, shuraimycoord, 100)) {
-            obj1.displayInter();
-        }
         if (chef.inRange(shuraimxcoord, shuraimycoord, 100)) {
             chef.dispname();
         }
         if (guard.inRange(shuraimxcoord, shuraimycoord, 100)) {
             guard.dispname();
         }
-        DrawTexture(obj1d, obj1.xcoord, obj1.ycoord, WHITE);
         DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
         DrawTexture(door2d, door2.xcoord, door2.ycoord, WHITE);
         DrawTexture(guardd, guard.xcoord, guard.ycoord, WHITE);
@@ -128,9 +117,6 @@ int main () {
         DrawTexture(tv, 0, 0, WHITE);
         //static Interactables and stuff yk type shi
         if (IsKeyDown(KEY_E)) {
-            if ((obj1.inRange(shuraimxcoord, shuraimycoord, 100))) {
-                obj1.giveClue(points);
-            }
             if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
                 EndDrawing();
                 if (IsMusicStreamPlaying(gamemusic)) {
