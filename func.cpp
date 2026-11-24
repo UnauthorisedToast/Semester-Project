@@ -5,15 +5,19 @@ using namespace std;
 
 
 
-void menu (bool &playMusic) {
+void menu (bool &playMusic, bool isplayed) {
     SetTargetFPS(60);
     Music menumusic = LoadMusicStream("music/menumusic.wav");
     Texture2D menu = LoadTexture("sprites/menu.png");
+    Font cfont = LoadFontEx("font/qadang.ttf", 10, 0, 0);
+    SetTextureFilter(cfont.texture, TEXTURE_FILTER_POINT);
     PlayMusicStream(menumusic);
     if (!playMusic) {
         PauseMusicStream(menumusic);
     }
     while (!IsKeyPressed(KEY_ENTER)) {
+        float fontsize = 20.0f;
+        float space = fontsize / 10.0f;
         if (playMusic) {
             UpdateMusicStream(menumusic);
         }
@@ -76,7 +80,7 @@ void winscreen (bool &playMusic, int &points) {
     if (playMusic) {
         PlayMusicStream(winmusic);
     }
-    while (!(WindowShouldClose() || IsKeyPressed(KEY_ESCAPE))) {
+    while (!(IsKeyPressed(KEY_ESCAPE))) {
         if (playMusic) {
             UpdateMusicStream(winmusic);
         }
@@ -93,6 +97,7 @@ void winscreen (bool &playMusic, int &points) {
         EndDrawing();
     }
     StopMusicStream(winmusic);
+    CloseWindow();
 }
 
 void losescreen (bool &playMusic, int &points) {
@@ -101,7 +106,7 @@ void losescreen (bool &playMusic, int &points) {
     if (playMusic) {
         PlayMusicStream(losemusic);
     }
-    while (!(WindowShouldClose() || IsKeyPressed(KEY_ESCAPE))) {
+    while (!(IsKeyPressed(KEY_ESCAPE))) {
         if (playMusic) {
             UpdateMusicStream(losemusic);
         }
@@ -116,16 +121,17 @@ void losescreen (bool &playMusic, int &points) {
         EndDrawing();
     }
     StopMusicStream(losemusic);
+    CloseWindow();
 }
 
-void incrim (bool &playMusic, int &points) {
+void incrim (bool &playMusic, int &points, bool isplayed) {
     SetTargetFPS(60);
     Music incrimmusic = LoadMusicStream("music/incrimmusic.mp3");
     Texture2D incrimscreen = LoadTexture("sprites/incrimscreen.png");
     if (playMusic) {
         PlayMusicStream(incrimmusic);
     }
-    while (!IsKeyPressed(KEY_L)) {
+    while (!IsKeyPressed(KEY_I)) {
         if (playMusic) {
             UpdateMusicStream(incrimmusic);
         }
@@ -192,7 +198,7 @@ void incrim (bool &playMusic, int &points) {
             if (IsMusicStreamPlaying(incrimmusic)) {
                 StopMusicStream(incrimmusic);
             }
-            menu(playMusic);
+            menu(playMusic, isplayed);
             if (playMusic) {
                 PlayMusicStream(incrimmusic);
             }
@@ -201,7 +207,7 @@ void incrim (bool &playMusic, int &points) {
     StopMusicStream(incrimmusic);
 }
 
-void room2 (bool playMusic, int &questionsLeft, int &points) {
+void room2 (bool playMusic, int &questionsLeft, int &points, bool isplayed) {
     SetTargetFPS(60);
     //Object Testing
     static interactable kingsnote;
@@ -289,7 +295,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            incrim(playMusic, points);
+            incrim(playMusic, points, isplayed);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             } 
@@ -340,6 +346,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
             bed.dispsearch();
         }
         DrawTexture(tv, 0, 0, WHITE);
+        DrawText("King's Bedroom", 100, 50, 40, RED);
         if (IsKeyDown(KEY_E)) {
             if ((kingsnote.inRange(shuraimxcoord, shuraimycoord, 100)) && (rug.searched)) {
                 kingsnote.giveClue(points);
@@ -349,7 +356,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                butler.interrogation(playMusic, questionsLeft, points);
+                butler.interrogation(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -377,7 +384,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            menu(playMusic);
+            menu(playMusic, isplayed);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             }
@@ -389,7 +396,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
 
 }
 
-void room3 (bool playMusic, int &questionsLeft, int &points) {
+void room3 (bool playMusic, int &questionsLeft, int &points, bool isplayed) {
     SetTargetFPS(60);
     //Object Testing
 
@@ -480,7 +487,7 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            incrim(playMusic, points);
+            incrim(playMusic, points, isplayed);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             } 
@@ -524,6 +531,7 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
             }
         }
         DrawTexture(tv, 0, 0, WHITE);
+        DrawText("Queen's Bedroom", 100, 50, 40, RED);
         if (IsKeyDown(KEY_E)) {
             if (drt.inRange(shuraimxcoord, shuraimycoord, 200) && !drt.searched) {
                 drt.searched = 1;
@@ -542,7 +550,7 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                queen.interrogation(playMusic, questionsLeft, points);
+                queen.interrogation(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -553,7 +561,7 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                servant.interrogation(playMusic, questionsLeft, points);
+                servant.interrogation(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -567,7 +575,7 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            menu(playMusic);
+            menu(playMusic, isplayed);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             }

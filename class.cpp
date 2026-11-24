@@ -38,7 +38,7 @@ void interactable::displayInter() {
     DrawText("Hold E to Interact", xcoord, ycoord - 40, 25, BLUE);
 }
 
-void interactable::interrogation (bool &playMusic, int &questionsLeft, int &points) {
+void interactable::interrogation (bool &playMusic, int &questionsLeft, int &points, bool isplayed) {
     SetTargetFPS(60);
     Texture2D backdrop = LoadTexture("sprites/bg.png");
     Texture2D tv = LoadTexture("sprites/tv.png");
@@ -132,7 +132,7 @@ void interactable::interrogation (bool &playMusic, int &questionsLeft, int &poin
             if (IsMusicStreamPlaying(intemusic)) {
                 StopMusicStream(intemusic);
             }
-            menu(playMusic);
+            menu(playMusic, isplayed);
             if (playMusic) {
                 PlayMusicStream(intemusic);
             }

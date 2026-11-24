@@ -63,19 +63,22 @@ int main () {
     Texture2D controls;
     Texture2D wasd;
     Texture2D tv = LoadTexture("sprites/tv.png");
-    Texture2D backdrop = LoadTexture("sprites/bg.png");
+    Texture2D backdrop = LoadTexture("sprites/woodfloor.png");
+    Texture2D booksd = LoadTexture("sprites/bookshelf.png");
     bool playMusic = 1;
     //audio/music
     // Music menumusic = LoadMusicStream("music/foxsparrow.mp3");
     Music gamemusic = LoadMusicStream("music/gamemusic.wav");
     // Music interrogationmusic = LoadMusicStream("music/UndertaleFinale.mp3");
 
- 
-    menu(playMusic);
+    bool isplayed = 0;
+    menu(playMusic, isplayed);
     //game loop
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
+
+    isplayed = 1;
     
     while (!WindowShouldClose()) {
         if (playMusic) {
@@ -102,19 +105,22 @@ int main () {
         //Using them later isnt a bad idea tho tbh...
 
         DrawTexture(backdrop, 0, 0, WHITE);
-        
+        DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
+        DrawTexture(door2d, door2.xcoord, door2.ycoord, WHITE);
+        for (int i=0; 100 + (i*200) < 1490; i++) {
+            DrawTexture(booksd, 100 + (i*200), 100, WHITE);
+        }
+        DrawTexture(guardd, guard.xcoord, guard.ycoord, WHITE);
+        DrawTexture(chefd, chef.xcoord, chef.ycoord, WHITE);
         if (chef.inRange(shuraimxcoord, shuraimycoord, 100)) {
             chef.dispname();
         }
         if (guard.inRange(shuraimxcoord, shuraimycoord, 100)) {
             guard.dispname();
         }
-        DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
-        DrawTexture(door2d, door2.xcoord, door2.ycoord, WHITE);
-        DrawTexture(guardd, guard.xcoord, guard.ycoord, WHITE);
-        DrawTexture(chefd, chef.xcoord, chef.ycoord, WHITE);
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         DrawTexture(tv, 0, 0, WHITE);
+        DrawText("Hallway", 100, 50, 40, RED);
         //static Interactables and stuff yk type shi
         if (IsKeyDown(KEY_E)) {
             if (door.inRange(shuraimxcoord, shuraimycoord, 100)) {
@@ -122,7 +128,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                room2(playMusic, questionsLeft, points);
+                room2(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -133,7 +139,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                room3(playMusic, questionsLeft, points);
+                room3(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -144,7 +150,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                guard.interrogation(playMusic, questionsLeft, points);
+                guard.interrogation(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -155,7 +161,7 @@ int main () {
                 if (IsMusicStreamPlaying(gamemusic)) {
                     StopMusicStream(gamemusic);
                 }
-                chef.interrogation(playMusic, questionsLeft, points);
+                chef.interrogation(playMusic, questionsLeft, points, isplayed);
                 if (playMusic) {
                     PlayMusicStream(gamemusic);
                 }
@@ -166,7 +172,7 @@ int main () {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            incrim(playMusic, points);
+            incrim(playMusic, points, isplayed);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             } 
@@ -177,7 +183,7 @@ int main () {
             if (IsMusicStreamPlaying(gamemusic)) {
                 StopMusicStream(gamemusic);
             }
-            menu(playMusic);
+            menu(playMusic, isplayed);
             if (playMusic) {
                 PlayMusicStream(gamemusic);
             }
