@@ -210,10 +210,9 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     Texture2D kingsnoted = LoadTexture("sprites/paperonfloor.png");
     kingsnote.clue = "The queen's cold shoulder saddens me. -King";
 
-
     static interactable kingsl;
     kingsl.xcoord = 350;
-    kingsl.ycoord = 320;
+    kingsl.ycoord = 370;
     Texture2D kingsld = LoadTexture("sprites/paperonfloor.png");
     kingsl.clue = "A love letter from the king to... not the madame...";
 
@@ -237,19 +236,18 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     static interactable books;
     books.xcoord = 100;
     books.ycoord = 100;
-    Texture2D booksd = LoadTexture("sprites/bookshelf.png");
-    Texture2D booksh = LoadTexture(books.path);
+    Texture2D booksh = LoadTexture("sprites/bookshelf.png");
 
     static interactable bed;
     bed.xcoord = 100;
-    bed.ycoord = 300;
+    bed.ycoord = 350;
     Texture2D bedd = LoadTexture("sprites/bed.png");
 
     static interactable butler;
     butler.name = " Butler";
     butler.xcoord = 1200;
     butler.ycoord = 200;
-    Texture2D butlerd = LoadTexture("sprites/sh.png");
+    Texture2D butlerd = LoadTexture("sprites/butler.png");
     butler.ans1 = "I was in the lawn.";
     butler.ans2 = "I was about to leave the estate.";
     butler.ans3 = "He was amazing. The madame on the contrary...";
@@ -266,6 +264,7 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
     int speed = 5;
     bool exitroom = 0;
     Texture2D shuraim = LoadTexture("sprites/sh.png");
+    Texture2D kst = LoadTexture("sprites/kingsidetable.png");
     if (playMusic) {
         PlayMusicStream(gamemusic);
     }
@@ -306,7 +305,9 @@ void room2 (bool playMusic, int &questionsLeft, int &points) {
         }
         DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
         DrawTexture(butlerd, butler.xcoord, butler.ycoord, WHITE);
+        DrawTexture(kst, 100, 300, WHITE);
         DrawTexture(bedd, bed.xcoord, bed.ycoord, WHITE);
+        DrawTexture(kst, 100, 550, WHITE);
         if (bed.searched) {
             DrawTexture(kingsld, kingsl.xcoord, kingsl.ycoord, WHITE);
         }
@@ -392,13 +393,13 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
     //Object Testing
 
     static interactable bed;
-    bed.xcoord = 1190;
+    bed.xcoord = 1200;
     bed.ycoord = 300;
     Texture2D bedd = LoadTexture("sprites/emptybed.png");
 
     static interactable servantsnote;
     servantsnote.xcoord = 1210;
-    servantsnote.ycoord = 400;
+    servantsnote.ycoord = 450;
     Texture2D servantsnoted = LoadTexture("sprites/paperonfloor.png");
     servantsnote.clue = "The king sleeps at 8pm nightly madame.";
 
@@ -433,18 +434,22 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
 
     static interactable servant;
     servant.name = "Servant";
-    servant.xcoord = 400;
-    servant.ycoord = 500;
-    Texture2D servantd = LoadTexture("sprites/sh.png");
+    servant.xcoord = 900;
+    servant.ycoord = 400;
+    Texture2D servantd = LoadTexture("sprites/servant.png");
     servant.ans1 = "I was in the living room when I heard the screams.";
     servant.ans2 = "I was cleaning the floors; then, I called you.";
     servant.ans3 = "As opposed to his wife, he was amazing to the staff.";
     servant.ans4 = "No reason to be afraid... right...?";
     servant.ans5 = "The madame... uhm... requested me to inform... nevermind...";
 
+    Texture2D rugd = LoadTexture("sprites/kingroomrug.png");
+    Texture2D qst = LoadTexture("sprites/queensidetable.png");
+
     //Initialising and importing music and textures n stuff idk
-    Texture2D backdrop = LoadTexture("sprites/bg.png");
+    Texture2D backdrop = LoadTexture("sprites/woodfloor.png");
     Music gamemusic = LoadMusicStream("music/gamemusic.wav");
+    Texture2D booksh = LoadTexture("sprites/bookshelf.png");
     PlayMusicStream(gamemusic);
     Texture2D tv = LoadTexture("sprites/tv.png");
     int shuraimxcoord = 100;
@@ -482,11 +487,17 @@ void room3 (bool playMusic, int &questionsLeft, int &points) {
         }
         BeginDrawing();
         DrawTexture(backdrop, 0, 0, WHITE);
+        for (int i=0; 100 + (i*200) < 1490; i++) {
+            DrawTexture(booksh, 100 + (i*200), 100, WHITE);
+        }
+        DrawTexture(rugd, 300, 270, WHITE);
         DrawTexture(doord, door.xcoord, door.ycoord, WHITE);
         DrawTexture(queend, queen.xcoord, queen.ycoord, WHITE);
         DrawTexture(servantd, servant.xcoord, servant.ycoord, WHITE);
-        DrawTexture(drtd, drt.xcoord, drt.ycoord, WHITE);
+        DrawTexture(qst, 1445, 250, WHITE);
+        DrawTexture(qst, 1445, 500, WHITE);
         DrawTexture(bedd, bed.xcoord, bed.ycoord, WHITE);
+        DrawTexture(drtd, drt.xcoord, drt.ycoord, WHITE);
         DrawTexture(shuraim, shuraimxcoord, shuraimycoord, WHITE);
         if (servant.inRange(shuraimxcoord, shuraimycoord, 100)) {
             servant.dispname();

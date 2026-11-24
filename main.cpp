@@ -31,9 +31,9 @@ int main () {
     
     static interactable guard;
     guard.name = "  Guard";
-    guard.xcoord = 800;
-    guard.ycoord = 400;
-    Texture2D guardd = LoadTexture("sprites/sh.png");
+    guard.xcoord = 1200;
+    guard.ycoord = 200;
+    Texture2D guardd = LoadTexture("sprites/guard.png");
     guard.ans1 = "Right outside the door.";
     guard.ans2 = "Standing guard. Watched the butler leave.";
     guard.ans3 = "Amazing. Once made a mistake, he didn't even say nun.";
@@ -43,9 +43,8 @@ int main () {
     static interactable chef;
     chef.name = "   Chef";
     chef.xcoord = 400;
-    chef.ycoord = 200;
-    chef.path = "sprites/sh.png";
-    Texture2D chefd = LoadTexture("sprites/sh.png");
+    chef.ycoord = 275;
+    Texture2D chefd = LoadTexture("sprites/chef.png");
     chef.ans1 = "In my quarters.";
     chef.ans2 = "Thinking what to make the next day.";
     chef.ans3 = "He was a good man. Its a shame what happened.";
@@ -64,7 +63,6 @@ int main () {
     door2.ycoord = 320;
     door2.path = "sprites/door2.png";
     Texture2D door2d = LoadTexture("sprites/door.png");
-
 
     //asset list
     //visual
