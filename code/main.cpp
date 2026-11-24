@@ -1,8 +1,4 @@
 #include <raylib.h>
-#include <iostream>
-#include <cmath>
-#include <time.h>
-#include <string>
 #include "class.hpp"
 #include "func.hpp"
 using namespace std;
@@ -86,16 +82,16 @@ int main () {
         }
         //according to tutorial event handling goes first
         //movement
-        if (IsKeyDown(KEY_D)) {
+        if (IsKeyDown(KEY_D) && ((shuraimxcoord + 72) + speed <= 1500)) {
             shuraimxcoord = shuraimxcoord + speed;
         }
-        if (IsKeyDown(KEY_A)) {
+        if (IsKeyDown(KEY_A) && (shuraimxcoord - speed >= 100)) {
             shuraimxcoord = shuraimxcoord - speed;
         }
-        if (IsKeyDown(KEY_W)) {
+        if (IsKeyDown(KEY_W) && (shuraimycoord - speed >= 100)) {
             shuraimycoord = shuraimycoord - speed;
         }
-        if (IsKeyDown(KEY_S)) {
+        if (IsKeyDown(KEY_S) && ((shuraimycoord + 165) + speed <= 620)) {
             shuraimycoord = shuraimycoord + speed;
         }
         // then update of positions

@@ -279,16 +279,16 @@ void room2 (bool playMusic, int &questionsLeft, int &points, bool isplayed) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
-        if (IsKeyDown(KEY_D)) {
+        if (IsKeyDown(KEY_D) && ((shuraimxcoord + 72) + speed <= 1500)) {
             shuraimxcoord = shuraimxcoord + speed;
         }
-        if (IsKeyDown(KEY_A)) {
+        if (IsKeyDown(KEY_A) && (shuraimxcoord - speed >= 100)) {
             shuraimxcoord = shuraimxcoord - speed;
         }
-        if (IsKeyDown(KEY_W)) {
+        if (IsKeyDown(KEY_W) && (shuraimycoord - speed >= 100)) {
             shuraimycoord = shuraimycoord - speed;
         }
-        if (IsKeyDown(KEY_S)) {
+        if (IsKeyDown(KEY_S) && ((shuraimycoord + 165) + speed <= 620)) {
             shuraimycoord = shuraimycoord + speed;
         }
         if (IsKeyDown(KEY_K)) {
@@ -471,16 +471,16 @@ void room3 (bool playMusic, int &questionsLeft, int &points, bool isplayed) {
         if (playMusic) {
             UpdateMusicStream(gamemusic);
         }
-        if (IsKeyDown(KEY_D)) {
+        if (IsKeyDown(KEY_D) && ((shuraimxcoord + 72) + speed <= 1500)) {
             shuraimxcoord = shuraimxcoord + speed;
         }
-        if (IsKeyDown(KEY_A)) {
+        if (IsKeyDown(KEY_A) && (shuraimxcoord - speed >= 100)) {
             shuraimxcoord = shuraimxcoord - speed;
         }
-        if (IsKeyDown(KEY_W)) {
+        if (IsKeyDown(KEY_W) && (shuraimycoord - speed >= 100)) {
             shuraimycoord = shuraimycoord - speed;
         }
-        if (IsKeyDown(KEY_S)) {
+        if (IsKeyDown(KEY_S) && ((shuraimycoord + 165) + speed <= 620)) {
             shuraimycoord = shuraimycoord + speed;
         }
         if (IsKeyDown(KEY_K)) {

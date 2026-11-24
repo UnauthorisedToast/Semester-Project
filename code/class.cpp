@@ -1,8 +1,7 @@
 #include "class.hpp"
 #include "func.hpp"
 #include <raylib.h>
-#include <chrono>
-#include <string>
+
 using namespace std;
 
 bool interactable::inRange(int shuraimx, int shuraimy, int range = 100) {
